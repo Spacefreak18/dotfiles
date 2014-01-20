@@ -1,0 +1,5 @@
+source $BYOBU_PREFIX/share/byobu/keybindings/common
+source $BYOBU_PREFIX/share/byobu/keybindings/f-keys.screen.disable
+bindkey "^A"
+register x "^A"
+escape ^Aa
