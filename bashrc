@@ -17,6 +17,8 @@ if [[ -f ~/.bash_start ]] && [[ ! -f /tmp/bash_start.pid ]]; then
 	touch /tmp/bash_start.pid
 fi
 
+# kde overrides this
+# a small script is in ~/.kde/autostart
 if [[ -f ~/.Xdefaults ]]; then
 	xrdb -load ~/.Xdefaults
 fi
@@ -52,6 +54,7 @@ fi
 alias mc='mc -S gotar'
 alias screen='byobu-screen'
 alias ed='vim'
+alias tmux='byobu-tmux' 
 
 ###Colorizied Command Prompt
 ## Red Prompt, Blue Directory, Green text
@@ -76,7 +79,3 @@ HISTCONTROL=ignoreboth
 
 # append to the history file, don't overwrite it
 shopt -s histappend
-
-if [[ $SSH_CONNECTION ]] && [[ $SSH_TTY = $(tty) ]]; then
-	echo "Hi!!!"
-fi
