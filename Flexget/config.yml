@@ -1,4 +1,4 @@
-presets:
+templates:
   deluge_basic:
     verify_ssl_certificates: no
     free_space:
@@ -9,8 +9,14 @@ presets:
       path: /media/Storage/Torrents/Pool/
       host: localhost
       port: 58846
-      user: deluge
-      pass: deluge
+      username: deluge
+      password: deluge
+
+email:
+  from: vink@mail.brak
+  to: paul@mail.brak
+  subject: Downloads
+  smtp_host: localhost
 
 tasks:
   LAS:
@@ -21,7 +27,7 @@ tasks:
       - LAS
     accept_all: yes
     limit_new: 1
-    preset:
+    template:
       - deluge_basic
     deluge:
       movedone: /media/Storage/Television/LAS/
@@ -34,7 +40,7 @@ tasks:
       - Tech Snap
     accept_all: yes
     limit_new: 1
-    preset:
+    template:
       - deluge_basic
     deluge:
       movedone: /media/Storage/Television/Tech Snap/
@@ -48,7 +54,7 @@ tasks:
   F1:
     priority: 7
     #download: /media/Storage/Torrents/
-    preset:
+    template:
       - deluge_basic
     deluge:
       label: F1
@@ -72,7 +78,7 @@ tasks:
   Paul:
     priority: 1
     #download: /media/Storage/Torrents/
-    preset:
+    template:
       - deluge_basic
     deluge:
       main_file_only: yes
@@ -80,7 +86,7 @@ tasks:
     content_filter:
       reject:
         - '*.rar'
-    import_series:
+    configure_series:
       settings:
         target: 720p+
         timeframe: 4 days
@@ -110,12 +116,12 @@ tasks:
   
   moviesHigh:
     priority: 5
-    preset:
+    template:
       - deluge_basic
     deluge:
       main_file_only: yes
       label: Movie
-      movedone: /media/Auxillary/Sardo/Film/
+      movedone: /media/Auxillary/Film/
     content_filter:
       reject:
         - '*.rar'
@@ -132,7 +138,7 @@ tasks:
         - piratebay: yes
         - torrentz: any
         #- search_rss: http://extratorrent.com/rss.xml?type=search&search={{search_term|replace(' ', '+')}}
-    movie_queue: yes
+    movie_queue: accept
     torrent_alive: 4
     quality: 1080p
     exec:
@@ -141,12 +147,12 @@ tasks:
   
   moviesMid:
     priority: 6
-    preset:
+    template:
       - deluge_basic
     deluge:
       main_file_only: yes
       label: Movie
-      movedone: /media/Auxillary/Sardo/Film/
+      movedone: /media/Auxillary/Film/
     content_filter:
       reject:
         - '*.rar'
@@ -162,7 +168,7 @@ tasks:
       from:
         - piratebay: yes
         - torrentz: any
-    movie_queue: yes
+    movie_queue: accept
     torrent_alive: 4
     quality: 720p
     exec:
@@ -177,4 +183,4 @@ tasks:
         title: 1
         url: 1
     accept_all: yes
-    queue_movies: yes
+    movie_queue: add
