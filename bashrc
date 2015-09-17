@@ -28,6 +28,10 @@ if [[ -z "$DISPLAY" ]] && [[ $(tty) = /dev/tty1 ]] && [[ $SERVER ]] && [[ ! $HEA
 	startx
 fi
 
+# Create a random fake username for things
+NAME=`rm -f index.html && wget -q api.randomuser.me && cat index.html | grep username | cut -d ':' -f 2 | cut -d ' ' -f 2 | cut -d '"' -f 2 && rm -f index.html`
+
+PROMPTGREEN='\e[0;32m'
 # bash colors
 if [ -f ~/.bash_color ]; then
   . ~/.bash_color
@@ -54,11 +58,12 @@ fi
 alias mc='mc -S gotar'
 alias screen='byobu-screen'
 alias ed='vim'
-alias tmux='byobu-tmux' 
+alias tmux='byobu-tmux'
+alias mux='byobu-tmux' 
 
 ###Colorizied Command Prompt
 ## Red Prompt, Blue Directory, Green text
-PS1="\[\e[0;31m\]\u\[\e[m\] \[\e[1;34m\]\w\[\e[m\] \[\e[0;31m\]\$ \[\e[m\]\[$PROMPTGREEN\]"
+PS1="\[\e[0;31m\]\u\[\e[m\] \[\e[1;34m\]\w\[\e[m\] \A \[\e[0;31m\]\$ \[\e[m\]\[$PROMPTGREEN\]"
 
 ### Paths
 #export PATH=/opt/android-sdk-linux/tools:$PATH
