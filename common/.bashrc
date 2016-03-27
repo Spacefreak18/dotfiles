@@ -7,8 +7,13 @@
 
 ## Run the universal program for connecting network shares and syncing config files
 if [[ ! -f /tmp/BrakConnections.pid ]]; then
-	BrakConnections Connect
+	#BrakConnections Connect
   	touch /tmp/BrakConnections.pid
+fi
+
+## things I don't want public
+if [[ -f ~/.bash_dark ]]; then
+	. ~/.bash_dark
 fi
 
 ## my file where I store server specific applications to start
@@ -23,13 +28,15 @@ if [[ -f ~/.Xdefaults ]]; then
 	xrdb -load ~/.Xdefaults
 fi
 
+## Xdefaults is deprecated upstream
+if [[ -f ~/.Xresources ]]; then
+	xrdb -load ~/.Xresources
+fi
+
 ### Startx on Login
 if [[ -z "$DISPLAY" ]] && [[ $(tty) = /dev/tty1 ]] && [[ $SERVER ]] && [[ ! $HEADLESS ]]; then
 	startx
 fi
-
-# Create a random fake username for things
-NAME=`rm -f index.html && wget -q api.randomuser.me && cat index.html | grep username | cut -d ':' -f 2 | cut -d ' ' -f 2 | cut -d '"' -f 2 && rm -f index.html`
 
 PROMPTGREEN='\e[0;32m'
 # bash colors
@@ -56,14 +63,16 @@ if [ ! $SERVER ]; then
 fi
 
 alias mc='mc -S gotar'
-alias screen='byobu-screen'
+#alias screen='byobu-screen'
 alias ed='vim'
-alias tmux='byobu-tmux'
+#alias tmux='byobu-tmux'
 alias mux='byobu-tmux' 
+alias movetomycgroup='cgm movepid all me $$'
+alias ncmpc='ncmpc -c'
 
 ###Colorizied Command Prompt
 ## Red Prompt, Blue Directory, Green text
-PS1="\[\e[0;31m\]\u\[\e[m\] \[\e[1;34m\]\w\[\e[m\] \A \[\e[0;31m\]\$ \[\e[m\]\[$PROMPTGREEN\]"
+PS1="\[\e[0;31m\]\u\[\e[m\] \[\e[1;34m\]\w\[\e[m\] \t \[\e[0;31m\]\$ \[\e[m\]\[$PROMPTGREEN\]"
 
 ### Paths
 #export PATH=/opt/android-sdk-linux/tools:$PATH
