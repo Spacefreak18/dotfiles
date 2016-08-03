@@ -60,6 +60,7 @@ fi
 ## Custom Aliases
 if [ ! $SERVER ]; then
   alias help='cat /home/paul/Documents/Templates/ForgettableCommands.txt'
+  alias gpg='gpg2'
 fi
 
 alias mc='mc -S gotar'
@@ -67,7 +68,6 @@ alias mc='mc -S gotar'
 alias ed='vim'
 #alias tmux='byobu-tmux'
 alias mux='byobu-tmux' 
-alias movetomycgroup='cgm movepid all me $$'
 alias ncmpc='ncmpc -c'
 
 ###Colorizied Command Prompt
