@@ -5,6 +5,10 @@
 ### Paul's User .bashrc file
 ### /home/paul/.bashrc
 
+clear
+TMOUT=0
+export TERM=xterm
+
 ## Run the universal program for connecting network shares and syncing config files
 if [[ ! -f /tmp/BrakConnections.pid ]]; then
 	#BrakConnections Connect
@@ -44,7 +48,7 @@ if [ -f ~/.bash_color ]; then
   . ~/.bash_color
   PROMPTGREEN=$Green
   if [ $TERM = "xterm" ]; then
-	export TERM=screen-256color
+	#export TERM=screen-256color
 	PROMPTGREEN=$IGreen
   fi
 fi
@@ -69,6 +73,7 @@ alias ed='vim'
 #alias tmux='byobu-tmux'
 alias mux='byobu-tmux' 
 alias ncmpc='ncmpc -c'
+alias img='fim -d /dev/fb0 -a'
 
 ###Colorizied Command Prompt
 ## Red Prompt, Blue Directory, Green text
