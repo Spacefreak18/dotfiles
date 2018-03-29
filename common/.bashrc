@@ -52,6 +52,9 @@ if [ -f ~/.bash_color ]; then
 	#export TERM=screen-256color
 	PROMPTGREEN=$IGreen
   fi
+  if [ $TERM = "rxvt-unicode-256color" ]; then
+  	PROMPTGREEN=$IGreen
+  fi
 fi
 
 # enable color support of ls and also add handy aliases
