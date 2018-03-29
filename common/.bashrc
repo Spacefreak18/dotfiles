@@ -5,9 +5,9 @@
 ### Paul's User .bashrc file
 ### /home/paul/.bashrc
 
+set -o vi
 clear
 TMOUT=0
-export TERM=xterm
 
 ## Run the universal program for connecting network shares and syncing config files
 if [[ ! -f /tmp/BrakConnections.pid ]]; then
@@ -38,6 +38,7 @@ if [[ -f ~/.Xresources ]]; then
 fi
 
 ### Startx on Login
+### For this to work $SERVER and $HEADLESS must be set in .profile before this file is sourced
 if [[ -z "$DISPLAY" ]] && [[ $(tty) = /dev/tty1 ]] && [[ $SERVER ]] && [[ ! $HEADLESS ]]; then
 	startx
 fi
@@ -67,13 +68,17 @@ if [ ! $SERVER ]; then
   alias gpg='gpg2'
 fi
 
-alias mc='mc -S gotar'
+alias weather='curl http://wttr.in/${WLOCATION}'
+alias moon='curl http://wttr.in/Moon'
+
+alias mc='mc -S dark'
 #alias screen='byobu-screen'
 alias ed='vim'
 #alias tmux='byobu-tmux'
 alias mux='byobu-tmux' 
 alias ncmpc='ncmpc -c'
-alias img='fim -d /dev/fb0 -a'
+alias img='fim -d /dev/fb0 -o fb --no-history-save -a'
+alias fim='fim --no-history-save -a'
 
 ###Colorizied Command Prompt
 ## Red Prompt, Blue Directory, Green text
