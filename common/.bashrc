@@ -82,12 +82,14 @@ alias mux='byobu-tmux'
 alias ncmpc='ncmpc -c'
 alias img='fim -d /dev/fb0 -o fb --no-history-save -a'
 alias fim='fim --no-history-save -a'
+alias rg='snap run rg'
 
 ###Colorizied Command Prompt
 ## Red Prompt, Blue Directory, Green text
 PS1="\[\e[0;31m\]\u\[\e[m\] \[\e[1;34m\]\w\[\e[m\] \t \[\e[0;31m\]\$ \[\e[m\]\[$PROMPTGREEN\]"
 
 ### Paths
+export PATH=~/.local/bin:$PATH
 #export PATH=/opt/android-sdk-linux/tools:$PATH
 #export PATH=/opt/android-sdk-linux/platform-tools:$PATH
 
