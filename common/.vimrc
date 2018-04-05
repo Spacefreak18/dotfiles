@@ -11,6 +11,8 @@ set nocompatible
 set wildmenu
 set splitright
 
+set clipboard=unnamedplus
+
 filetype plugin indent on
 
 " start NERDTree
@@ -23,3 +25,5 @@ autocmd VimEnter * wincmd p
 
 " will exit vim if only buffer left open is nerdtree
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+
+" au VimEnter * split
