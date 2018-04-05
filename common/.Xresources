@@ -1,4 +1,4 @@
-XTerm*termName: xterm-256color
+xTerm*termName: xterm-256color
 xterm*geometry: 82x20
 xterm*faceName: xft::pixelsize=12:antialias=false
 xterm*font: xft:terminus:pixelsize=16:antialias=false
@@ -108,4 +108,4 @@ Xft.dpi:        96
 Xft.antialias:  true
 Xft.rgba:       rgb
 Xft.hinting:    true
-Xft.hintstyle:  hintslight
+Xft.hintstyle: hintslight

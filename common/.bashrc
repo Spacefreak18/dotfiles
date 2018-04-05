@@ -9,6 +9,17 @@ set -o vi
 clear
 TMOUT=0
 
+if dpkg -l | grep --quiet curl; then
+	echo ""
+else
+	echo "Curl is necessary for certain features"
+fi
+if dpkg -l | grep --quiet wmctrl; then
+	echo ""
+else
+	echo "wmctrl is necessary for urxvt fullscreen"
+fi
+
 ## Run the universal program for connecting network shares and syncing config files
 if [[ ! -f /tmp/BrakConnections.pid ]]; then
 	#BrakConnections Connect
@@ -47,14 +58,12 @@ PROMPTGREEN='\e[0;32m'
 # bash colors
 if [ -f ~/.bash_color ]; then
   . ~/.bash_color
-  PROMPTGREEN=$Green
-  if [ $TERM = "xterm" ]; then
-	#export TERM=screen-256color
-	PROMPTGREEN=$IGreen
-  fi
-  if [ $TERM = "rxvt-unicode-256color" ]; then
-  	PROMPTGREEN=$IGreen
-  fi
+  PROMPTGREEN=$IGreen
+fi
+
+# directory to store other specific bash files not for use on all setups
+if [ -d ~/.bash ]; then
+	for $f in ~/.bash; do source $f; done;
 fi
 
 # enable color support of ls and also add handy aliases
