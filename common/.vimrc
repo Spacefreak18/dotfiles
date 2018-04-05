@@ -27,3 +27,10 @@ autocmd VimEnter * wincmd p
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
 " au VimEnter * split
+
+
+" Use 2 spaces for a tab
+set tabstop=2
+set shiftwidth=2
+set softtabstop=2
+set expandtab
