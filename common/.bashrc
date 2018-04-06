@@ -63,7 +63,7 @@ fi
 
 # directory to store other specific bash files not for use on all setups
 if [ -d ~/.bash ]; then
-	for $f in ~/.bash; do source $f; done;
+	for f in ~/.bash/*; do source $f; done;
 fi
 
 # enable color support of ls and also add handy aliases
