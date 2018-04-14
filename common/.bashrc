@@ -19,6 +19,7 @@ if dpkg -l | grep --quiet wmctrl; then
 else
 	echo "wmctrl is necessary for urxvt fullscreen"
 fi
+clear
 
 ## Run the universal program for connecting network shares and syncing config files
 if [[ ! -f /tmp/BrakConnections.pid ]]; then
@@ -101,6 +102,7 @@ PS1="\[\e[0;31m\]\u\[\e[m\] \[\e[1;34m\]\w\[\e[m\] \t \[\e[0;31m\]\$ \[\e[m\]\[$
 export PATH=~/.local/bin:$PATH
 #export PATH=/opt/android-sdk-linux/tools:$PATH
 #export PATH=/opt/android-sdk-linux/platform-tools:$PATH
+export TERM=screen-256color
 
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
