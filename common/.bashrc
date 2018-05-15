@@ -21,6 +21,10 @@ else
 fi
 clear
 
+if dpkg -l | grep --quiet neofetch; then
+  neofetch
+fi
+
 ## Run the universal program for connecting network shares and syncing config files
 if [[ ! -f /tmp/BrakConnections.pid ]]; then
 	#BrakConnections Connect
