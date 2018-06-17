@@ -1,6 +1,17 @@
-execute pathogen#infect()
+" this is for neovim to use the debian packaged vim plugins
+" will work without errors if you do as root
+" I don't think these directories are needed in neovim
+" mkdir /usr/share/nvim/runtime/pack/dist/opt/matchit
+" mkdir /usr/share/nvim/runtime/pack/dist/opt/editexisting
+set runtimepath+=/usr/share/vim/addons
+let &packpath=&runtimepath
 
-call pathogen#helptags()
+"source ~/.vim/*.vimrc
+
+" no longer loading any non-packaged addons
+" until then I'll leave this disabled
+"execute pathogen#infect()
+"call pathogen#helptags()
 
 syntax on
 

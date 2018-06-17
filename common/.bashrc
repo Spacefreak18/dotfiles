@@ -12,12 +12,12 @@ TMOUT=0
 if dpkg -l | grep --quiet curl; then
 	echo ""
 else
-	echo "Curl is necessary for certain features"
+	echo "Curl is necessary for certain features. Install cli_common."
 fi
 if dpkg -l | grep --quiet wmctrl; then
 	echo ""
 else
-	echo "wmctrl is necessary for urxvt fullscreen"
+	echo "wmctrl is necessary for urxvt fullscreen. Install cli_common."
 fi
 clear
 
@@ -97,7 +97,11 @@ alias ncmpc='ncmpc -c'
 alias img='fim -d /dev/fb0 -o fb --no-history-save -a'
 alias fim='fim --no-history-save -a'
 alias rg='snap run rg'
-
+# use neovim if it is installed
+if dpkg -l | grep --quiet neovim; then
+	alias vim='nvim -u ~/.vimrc'
+fi
+	
 ###Colorizied Command Prompt
 ## Red Prompt, Blue Directory, Green text
 PS1="\[\e[0;31m\]\u\[\e[m\] \[\e[1;34m\]\w\[\e[m\] \t \[\e[0;31m\]\$ \[\e[m\]\[$PROMPTGREEN\]"
@@ -106,7 +110,7 @@ PS1="\[\e[0;31m\]\u\[\e[m\] \[\e[1;34m\]\w\[\e[m\] \t \[\e[0;31m\]\$ \[\e[m\]\[$
 export PATH=~/.local/bin:$PATH
 #export PATH=/opt/android-sdk-linux/tools:$PATH
 #export PATH=/opt/android-sdk-linux/platform-tools:$PATH
-export TERM=screen-256color
+export TERM=linux
 
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
