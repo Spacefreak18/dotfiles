@@ -94,6 +94,7 @@ alias ed='vim'
 #alias tmux='byobu-tmux'
 alias mux='byobu-tmux' 
 alias ncmpc='ncmpc -c'
+alias ncmpcpp='ncmpcpp -h $MPD_HOST'
 alias img='fim -d /dev/fb0 -o fb --no-history-save -a'
 alias fim='fim --no-history-save -a'
 alias rg='snap run rg'
@@ -101,7 +102,19 @@ alias rg='snap run rg'
 if dpkg -l | grep --quiet neovim; then
 	alias vim='nvim -u ~/.vimrc'
 fi
-	
+
+## Music Player Daemon Controls and Set Desktop Background to current album art
+if [ -z "$SERVER" ] && [ -z "$HEADLESS" ] && [ -n "$MUSICDIR" ] && [ -n "$MPD_HOST" ]; then
+  if [ ! -f /tmp/mpc-next ]; then
+    while true; do 
+      touch /tmp/mpc-next;
+      kdialog --title "Now Playing" --passivepopup "$(mpc current --wait)" 10;
+      ~/.local/bin/setCoverArt;
+      sleep 30;
+      done &
+  fi
+fi
+
 ###Colorizied Command Prompt
 ## Red Prompt, Blue Directory, Green text
 PS1="\[\e[0;31m\]\u\[\e[m\] \[\e[1;34m\]\w\[\e[m\] \t \[\e[0;31m\]\$ \[\e[m\]\[$PROMPTGREEN\]"
