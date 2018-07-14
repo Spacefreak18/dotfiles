@@ -11,11 +11,11 @@ clear
 TMOUT=0
 
 
-dpkg -l | grep --quiet curl || echo "The curl packages is not installed which is necessary for certain features. Install cli_common."
+which curl > /dev/null || echo "The curl packages is not installed which is necessary for certain features. Install cli_common."
 
 clear
 tput cup 10000 0
-dpkg -l | grep --quiet neofetch && neofetch
+which neofetch > /dev/null && neofetch
 
 ## Run the universal program for connecting network shares and syncing config files
 if [ -n "$HOMENETWORK" ] && [ ! -f /tmp/BrakConnections.pid ]; then
