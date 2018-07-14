@@ -45,13 +45,8 @@ fi
 
 # kde overrides this
 # a small script is in ~/.kde/autostart
-if [[ -f ~/.Xdefaults ]]; then
-	xrdb -load ~/.Xdefaults
-fi
-
-## Xdefaults is deprecated upstream
-if [[ -f ~/.Xresources ]]; then
-	xrdb -load ~/.Xresources
+if [ -f ~/.Xdefaults ] && [ -z "$HEADLESS" ]; then
+  xrdb -load ~/.Xdefaults
 fi
 
 ### Startx on Login
