@@ -10,22 +10,12 @@ set -o vi
 clear
 TMOUT=0
 
-if dpkg -l | grep --quiet curl; then
-	echo ""
-else
-	echo "Curl is necessary for certain features. Install cli_common."
-fi
-if dpkg -l | grep --quiet wmctrl; then
-	echo ""
-else
-	echo "wmctrl is necessary for urxvt fullscreen. Install cli_common."
-fi
-clear
 
+dpkg -l | grep --quiet curl || echo "The curl packages is not installed which is necessary for certain features. Install cli_common."
+
+clear
 tput cup 10000 0
-if dpkg -l | grep --quiet neofetch; then
-  neofetch
-fi
+dpkg -l | grep --quiet neofetch && neofetch
 
 ## Run the universal program for connecting network shares and syncing config files
 if [ -n "$HOMENETWORK" ] && [ ! -f /tmp/BrakConnections.pid ]; then
