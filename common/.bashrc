@@ -5,6 +5,7 @@
 ### Paul's User .bashrc file
 ### /home/paul/.bashrc
 
+export TERM=linux
 set -o vi
 clear
 TMOUT=0
@@ -21,6 +22,7 @@ else
 fi
 clear
 
+tput cup 10000 0
 if dpkg -l | grep --quiet neofetch; then
   neofetch
 fi
@@ -122,7 +124,6 @@ PS1="\[\e[0;31m\]\u\[\e[m\] \[\e[1;34m\]\w\[\e[m\] \t \[\e[0;31m\]\$ \[\e[m\]\[$
 export PATH=~/.local/bin:$PATH
 #export PATH=/opt/android-sdk-linux/tools:$PATH
 #export PATH=/opt/android-sdk-linux/platform-tools:$PATH
-export TERM=linux
 
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
