@@ -26,9 +26,8 @@ if dpkg -l | grep --quiet neofetch; then
 fi
 
 ## Run the universal program for connecting network shares and syncing config files
-if [[ ! -f /tmp/BrakConnections.pid ]]; then
-	#BrakConnections Connect
-  	touch /tmp/BrakConnections.pid
+if [ -n "$HOMENETWORK" ] && [ ! -f /tmp/BrakConnections.pid ]; then
+  ~/.local/bin/BrakConnections && touch /tmp/BrakConnections.pid && ~/.local/bin/setCoverArt /media/Zorak/
 fi
 
 ## things I don't want public
@@ -104,7 +103,7 @@ if dpkg -l | grep --quiet neovim; then
 fi
 
 ## Music Player Daemon Controls and Set Desktop Background to current album art
-if [ -z "$SERVER" ] && [ -z "$HEADLESS" ] && [ -n "$MUSICDIR" ] && [ -n "$MPD_HOST" ]; then
+if [ -f /tmp/BrakConnections.pid ] && [ -z "$SERVER" ] && [ -z "$HEADLESS" ] && [ -n "$MUSICDIR" ] && [ -n "$MPD_HOST" ]; then
   if [ ! -f /tmp/mpc-next ]; then
     while true; do 
       touch /tmp/mpc-next;
