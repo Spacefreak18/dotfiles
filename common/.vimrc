@@ -4,6 +4,7 @@
 " mkdir /usr/share/nvim/runtime/pack/dist/opt/matchit
 " mkdir /usr/share/nvim/runtime/pack/dist/opt/editexisting
 set runtimepath+=/usr/share/vim/addons
+set runtimepath+=~/.vim
 let &packpath=&runtimepath
 
 "source ~/.vim/*.vimrc
@@ -14,6 +15,8 @@ let &packpath=&runtimepath
 "call pathogen#helptags()
 
 syntax on
+silent! colorscheme pablo
+silent! colorscheme vividchalk
 
 set hidden
 set number
@@ -40,4 +43,4 @@ set softtabstop=2
 set expandtab
 
 " https://github.com/vim-airline/vim-airline.git
-let g:airline#extensions#tabline#enabled = 1
+silent! let g:airline#extensions#tabline#enabled = 1
