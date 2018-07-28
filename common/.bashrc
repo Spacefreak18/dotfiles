@@ -15,7 +15,7 @@ which curl > /dev/null || echo "The curl packages is not installed which is nece
 
 clear
 tput cup 10000 0
-which neofetch > /dev/null && neofetch
+which neofetch > /dev/null && neofetch --disable de wm resolution
 
 ## Run the universal program for connecting network shares and syncing config files
 if [ -n "$HOMENETWORK" ] && [ ! -f /tmp/BrakConnections.pid ]; then
