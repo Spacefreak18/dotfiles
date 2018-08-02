@@ -13,7 +13,7 @@ if filereadable(filename)
     execute execstring
 endif
 
-let filename = 'ignore'
+let filename = '.ignore'
 if filereadable(filename)
     let igstring = ''
     for oline in readfile(filename)
