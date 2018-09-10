@@ -7,6 +7,9 @@ set runtimepath+=/usr/share/vim/addons
 set runtimepath+=~/.vim
 let &packpath=&runtimepath
 
+" set path for find for pwd at vim start
+set path=**
+
 "source ~/.vim/*.vimrc
 
 " no longer loading any non-packaged addons
@@ -43,4 +46,16 @@ set softtabstop=2
 set expandtab
 
 " https://github.com/vim-airline/vim-airline.git
+" apt-get install vim-airline
 silent! let g:airline#extensions#tabline#enabled = 1
+
+" https://github.com/vim-syntastic/syntastic
+" apt-get install vim-syntastic
+silent! set statusline+=%#warningmsg#
+silent! set statusline+=%{SyntasticStatuslineFlag()}
+silent! set statusline+=%*
+
+silent! let g:syntastic_always_populate_loc_list = 0
+silent! let g:syntastic_auto_loc_list = 1
+silent! let g:syntastic_check_on_open = 1
+silent! let g:syntastic_check_on_wq = 1
