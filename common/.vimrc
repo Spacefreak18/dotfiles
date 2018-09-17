@@ -14,8 +14,8 @@ set path=**
 
 " no longer loading any non-packaged addons
 " until then I'll leave this disabled
-"execute pathogen#infect()
-"call pathogen#helptags()
+execute pathogen#infect()
+call pathogen#helptags()
 
 syntax on
 silent! colorscheme pablo
@@ -59,3 +59,8 @@ silent! let g:syntastic_always_populate_loc_list = 0
 silent! let g:syntastic_auto_loc_list = 1
 silent! let g:syntastic_check_on_open = 1
 silent! let g:syntastic_check_on_wq = 1
+
+" https://github.com/Shougo/deoplete.nvim
+if has('nvim')
+  let g:deoplete#enable_at_startup = 1
+endif
