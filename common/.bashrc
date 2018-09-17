@@ -5,7 +5,7 @@
 ### Paul's User .bashrc file
 ### /home/paul/.bashrc
 
-export TERM=linux
+export TERM=tmux-256color
 set -o vi
 clear
 TMOUT=0
@@ -74,6 +74,7 @@ fi
 alias weather='curl http://wttr.in/${WLOCATION}'
 alias moon='curl http://wttr.in/Moon'
 
+alias mednafen='pasuspender; mednafen -sound.device sexyal-literal-default -video.fs 1 -nes.stretch aspect -md.stretch aspect -snes.stretch aspect'
 alias mc='mc -S dark'
 #alias screen='byobu-screen'
 alias ed='vim'
@@ -88,6 +89,8 @@ alias rg='snap run rg'
 if dpkg -l | grep --quiet neovim; then
 	alias vim='nvim -u ~/.vimrc'
 fi
+
+#alias python='/usr/bin/python3.6'
 
 ## Music Player Daemon Controls and Set Desktop Background to current album art
 if [ -f /tmp/BrakConnections.pid ] && [ -z "$SERVER" ] && [ -z "$HEADLESS" ] && [ -n "$MUSICDIR" ] && [ -n "$MPD_HOST" ]; then
