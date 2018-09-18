@@ -87,7 +87,7 @@ alias fim='fim --no-history-save -a'
 alias rg='snap run rg'
 
 # use neovim if it is installed and spacevim
-if dpkg -l | grep --quiet neovim; then
+if which nvim > /dev/null; then
 	alias vim='nvim -u ~/.vimrc'
   test -d ~/.SpaceVim.d && alias vim=nvim || alias vim='nvim -u ~/.vimrc'
 fi
