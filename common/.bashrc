@@ -66,20 +66,11 @@ if [ -x /usr/bin/dircolors ]; then
 fi
 
 ## Custom Aliases
-if [ ! $SERVER ]; then
-  alias help='cat /home/paul/Documents/Templates/ForgettableCommands.txt'
-  alias gpg='gpg2'
-fi
-
+ alias gpg='gpg2'
 alias weather='curl http://wttr.in/${WLOCATION}'
 alias moon='curl http://wttr.in/Moon'
-
 alias mednafen='pasuspender; mednafen -sound.device sexyal-literal-default -video.fs 1 -nes.stretch aspect -md.stretch aspect -snes.stretch aspect'
 alias mc='mc -S dark'
-#alias screen='byobu-screen'
-alias ed='vim'
-#alias tmux='byobu-tmux'
-alias mux='byobu-tmux' 
 alias ncmpc='ncmpc -c'
 alias ncmpcpp='ncmpcpp -h $MPD_HOST'
 alias img='fim -d /dev/fb0 -o fb --no-history-save -a'
