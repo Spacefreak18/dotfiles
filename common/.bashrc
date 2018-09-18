@@ -85,9 +85,11 @@ alias ncmpcpp='ncmpcpp -h $MPD_HOST'
 alias img='fim -d /dev/fb0 -o fb --no-history-save -a'
 alias fim='fim --no-history-save -a'
 alias rg='snap run rg'
-# use neovim if it is installed
+
+# use neovim if it is installed and spacevim
 if dpkg -l | grep --quiet neovim; then
 	alias vim='nvim -u ~/.vimrc'
+  test -d ~/.SpaceVim.d && alias vim=nvim || alias vim='nvim -u ~/.vimrc'
 fi
 
 #alias python='/usr/bin/python3.6'
