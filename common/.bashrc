@@ -17,10 +17,6 @@ clear
 tput cup 10000 0
 which neofetch > /dev/null && neofetch --disable de wm resolution
 
-## Run the universal program for connecting network shares and syncing config files
-if [ -n "$HOMENETWORK" ] && [ ! -f /tmp/BrakConnections.pid ]; then
-  ~/.local/bin/BrakConnections && touch /tmp/BrakConnections.pid && ~/.local/bin/setCoverArt /media/Zorak/
-fi
 
 # directory to store other specific bash files not for use on all setups
 if [ -d ~/.bash ]; then
@@ -42,6 +38,11 @@ fi
 # a small script is in ~/.kde/autostart
 if [ -f ~/.Xdefaults ] && [ -z "$HEADLESS" ]; then
   xrdb -load ~/.Xdefaults
+fi
+
+## Run the universal program for connecting network shares and syncing config files
+if [ -n "$HOMENETWORK" ] && [ ! -f /tmp/BrakConnections.pid ]; then
+  ~/.local/bin/BrakConnections && touch /tmp/BrakConnections.pid && ~/.local/bin/setCoverArt /media/Zorak/
 fi
 
 ### Startx on Login
