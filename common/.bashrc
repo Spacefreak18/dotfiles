@@ -64,17 +64,8 @@ if [ -d ~/.bash ]; then
 	for f in ~/.bash/*; do source $f; done;
 fi
 
-export CHEATCOLORS=true
-# enable color support of ls and also add handy aliases
-if [ -x /usr/bin/dircolors ]; then
-    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-    alias ls='ls --color=auto'
-    alias grep='grep --color=auto'
-    alias pacman='pacman-color'
-fi
-
 ## Custom Aliases
- alias gpg='gpg2'
+alias gpg='gpg2'
 alias weather='curl http://wttr.in/${WLOCATION}'
 alias moon='curl http://wttr.in/Moon'
 alias mednafen='pasuspender; mednafen -sound.device sexyal-literal-default -video.fs 1 -nes.stretch aspect -md.stretch aspect -snes.stretch aspect'
@@ -84,6 +75,16 @@ alias ncmpcpp='ncmpcpp -h $MPD_HOST'
 alias img='fim -d /dev/fb0 -o fb --no-history-save -a'
 alias fim='fim --no-history-save -a'
 alias rg='snap run rg'
+
+export CHEATCOLORS=true
+# enable color support of ls and also add handy aliases
+if [ -x /usr/bin/dircolors ]; then
+  export CHEATCOLORS=true
+  test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+  alias ls='ls --color=auto'
+  alias grep='grep --color=auto'
+  alias pacman='pacman-color'
+fi
 
 # use neovim if it is installed and spacevim
 if which nvim > /dev/null; then
