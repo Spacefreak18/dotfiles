@@ -45,12 +45,19 @@ if [[ -z "$DISPLAY" ]] && [[ $(tty) = /dev/tty1 ]] && [[ $SERVER ]] && [[ ! $HEA
 	startx
 fi
 
+
+## Configure Colors
 PROMPTGREEN='\e[0;32m'
 # bash colors
 if [ -f ~/.bash_color ]; then
   . ~/.bash_color
   PROMPTGREEN=$IGreen
 fi
+
+###Colorizied Command Prompt
+## Red Prompt, Blue Directory, Green text
+PS1="\[\e[0;31m\]\u\[\e[m\] \[\e[1;34m\]\w\[\e[m\] \t \[\e[0;31m\]\$ \[\e[m\]\[$PROMPTGREEN\]"
+
 
 # directory to store other specific bash files not for use on all setups
 if [ -d ~/.bash ]; then
