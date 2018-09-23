@@ -104,10 +104,6 @@ if [ -f /tmp/BrakConnections.pid ] && [ -z "$SERVER" ] && [ -z "$HEADLESS" ] && 
   fi
 fi
 
-###Colorizied Command Prompt
-## Red Prompt, Blue Directory, Green text
-PS1="\[\e[0;31m\]\u\[\e[m\] \[\e[1;34m\]\w\[\e[m\] \t \[\e[0;31m\]\$ \[\e[m\]\[$PROMPTGREEN\]"
-
 ### Paths
 export PATH=~/.local/bin:$PATH
 #export PATH=/opt/android-sdk-linux/tools:$PATH
