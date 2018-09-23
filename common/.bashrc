@@ -22,6 +22,11 @@ if [ -n "$HOMENETWORK" ] && [ ! -f /tmp/BrakConnections.pid ]; then
   ~/.local/bin/BrakConnections && touch /tmp/BrakConnections.pid && ~/.local/bin/setCoverArt /media/Zorak/
 fi
 
+# directory to store other specific bash files not for use on all setups
+if [ -d ~/.bash ]; then
+	for f in ~/.bash/*; do source $f; done;
+fi
+
 ## things I don't want public
 if [[ -f ~/.bash_dark ]]; then
 	. ~/.bash_dark
@@ -57,12 +62,6 @@ fi
 ###Colorizied Command Prompt
 ## Red Prompt, Blue Directory, Green text
 PS1="\[\e[0;31m\]\u\[\e[m\] \[\e[1;34m\]\w\[\e[m\] \t \[\e[0;31m\]\$ \[\e[m\]\[$PROMPTGREEN\]"
-
-
-# directory to store other specific bash files not for use on all setups
-if [ -d ~/.bash ]; then
-	for f in ~/.bash/*; do source $f; done;
-fi
 
 ## Custom Aliases
 alias gpg='gpg2'
