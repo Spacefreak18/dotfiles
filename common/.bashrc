@@ -80,8 +80,7 @@ alias rg='snap run rg'
 
 # use neovim if it is installed and spacevim
 if which nvim > /dev/null; then
-	alias vim='nvim -u ~/.vimrc'
-  test -d ~/.SpaceVim.d && alias vim=nvim || alias vim='nvim -u ~/.vimrc'
+  test -d ~/.SpaceVim && alias vim=nvim || alias vim='nvim -u ~/.vimrc'
 fi
 
 #alias python='/usr/bin/python3.6'
