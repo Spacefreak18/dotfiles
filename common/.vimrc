@@ -4,19 +4,33 @@
 " mkdir /usr/share/nvim/runtime/pack/dist/opt/matchit
 " mkdir /usr/share/nvim/runtime/pack/dist/opt/editexisting
 
-if (isdirectory("~/.SpaceVim"))
+if !empty(glob("~/.SpaceVim/config/main.vim"))
   execute 'source' fnamemodify(expand('<sfile>'), ':h').'/.SpaceVim/config/main.vim'
 endif
 
-if (!isdirectory("~/.SpaceVim"))
-set runtimepath+=/usr/share/vim/addons
-set runtimepath+=~/.vim
-let &packpath=&runtimepath
+" https://github.com/vim-syntastic/syntastic
+" apt-get install vim-syntastic
+silent! set statusline+=%#warningmsg#
+silent! set statusline+=%{SyntasticStatuslineFlag()}
+silent! set statusline+=%*
+
+silent! let g:syntastic_always_populate_loc_list = 0
+silent! let g:syntastic_auto_loc_list = 1
+silent! let g:syntastic_check_on_open = 1
+silent! let g:syntastic_check_on_wq = 1
 
 " set path for find for pwd at vim start
 set path=**
+set clipboard=unnamedplus
 
-"source ~/.vim/*.vimrc
+
+" check again for spacevim
+if empty(glob("~/.SpaceVim/config/main.vim"))
+"
+" Normal Settings not used on SpaceVim
+set runtimepath+=/usr/share/vim/addons
+set runtimepath+=~/.vim
+let &packpath=&runtimepath
 
 execute pathogen#infect()
 call pathogen#helptags()
@@ -31,8 +45,6 @@ set nowrap
 set nocompatible
 set wildmenu
 set splitright
-
-set clipboard=unnamedplus
 
 filetype plugin indent on
 
@@ -52,17 +64,6 @@ set expandtab
 " https://github.com/vim-airline/vim-airline.git
 " apt-get install vim-airline
 silent! let g:airline#extensions#tabline#enabled = 1
-
-" https://github.com/vim-syntastic/syntastic
-" apt-get install vim-syntastic
-silent! set statusline+=%#warningmsg#
-silent! set statusline+=%{SyntasticStatuslineFlag()}
-silent! set statusline+=%*
-
-silent! let g:syntastic_always_populate_loc_list = 0
-silent! let g:syntastic_auto_loc_list = 1
-silent! let g:syntastic_check_on_open = 1
-silent! let g:syntastic_check_on_wq = 1
 
 " https://github.com/Shougo/deoplete.nvim
 if has('nvim')
