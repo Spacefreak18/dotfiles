@@ -88,7 +88,10 @@ fi
 
 # use neovim if it is installed and spacevim
 if which nvim > /dev/null; then
-  test -d ~/.SpaceVim && alias vim=nvim || alias vim='nvim -u ~/.vimrc'
+  #curl -sLf https://spacevim.org/install.sh | bash
+  test -d ~/.SpaceVim && export SPACEVIMDIR=~/.vim
+  alias vim='nvim -u ~/.vimrc'
+  alias spacevim='nvim -u ~/.vimrc'
 fi
 
 #alias python='/usr/bin/python3.6'
