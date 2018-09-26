@@ -28,6 +28,7 @@
     autocomplete_parens = 0
     project_rooter_automatically = 0
     github_username = "ZitZ"
+    enable_neomake = 1
     disabled_plugins = ["wsdjeg/syntastic"]
 
 # Enable autocomplete layer
