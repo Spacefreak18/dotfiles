@@ -27,7 +27,8 @@
     relativenumber = 0
     autocomplete_parens = 0
     project_rooter_automatically = 0
-
+    github_username = "ZitZ"
+    disabled_plugins = ["wsdjeg/syntastic"]
 
 # Enable autocomplete layer
 [[layers]]
@@ -39,3 +40,7 @@ auto-completion-tab-key-behavior = "smart"
 name = 'shell'
 default_position = 'top'
 default_height = 30
+
+[[custom_plugins]]
+name = 'vim-syntastic/syntastic'
+merged = 0
