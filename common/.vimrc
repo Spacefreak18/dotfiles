@@ -3,6 +3,12 @@
 " I don't think these directories are needed in neovim
 " mkdir /usr/share/nvim/runtime/pack/dist/opt/matchit
 " mkdir /usr/share/nvim/runtime/pack/dist/opt/editexisting
+
+if (isdirectory("~/.SpaceVim"))
+  execute 'source' fnamemodify(expand('<sfile>'), ':h').'/.SpaceVim/config/main.vim'
+endif
+
+if (!isdirectory("~/.SpaceVim"))
 set runtimepath+=/usr/share/vim/addons
 set runtimepath+=~/.vim
 let &packpath=&runtimepath
@@ -12,8 +18,6 @@ set path=**
 
 "source ~/.vim/*.vimrc
 
-" no longer loading any non-packaged addons
-" until then I'll leave this disabled
 execute pathogen#infect()
 call pathogen#helptags()
 
@@ -63,4 +67,7 @@ silent! let g:syntastic_check_on_wq = 1
 " https://github.com/Shougo/deoplete.nvim
 if has('nvim')
   let g:deoplete#enable_at_startup = 1
+endif
+
+" ends check for spacevim
 endif
