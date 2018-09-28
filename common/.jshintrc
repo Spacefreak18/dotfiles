@@ -1,0 +1,11 @@
+{
+  // jshint configuration file
+
+  // increases max errors and warnings
+  "maxerr"      : 500,
+  // suppreses warnings about semicolons after functions
+  "asi"         : true,
+  // to be deprecated
+  // warnings about [] notation when dot notation is possible
+  "sub"         : true
+}
