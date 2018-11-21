@@ -41,8 +41,8 @@ if [ -f ~/.Xdefaults ] && [ -z "$HEADLESS" ]; then
 fi
 
 ## Run the universal program for connecting network shares and syncing config files
-if [ -n "$HOMENETWORK" ] && [ ! -f /tmp/BrakConnections.pid ]; then
-  ~/.local/bin/BrakConnections && touch /tmp/BrakConnections.pid && ~/.local/bin/setCoverArt /media/Zorak/
+if [ ! -f /tmp/BrakConnections.pid ]; then
+  ~/.local/bin/BrakConnections && ~/.local/bin/setCoverArt $MPD_HOST
 fi
 
 ### Startx on Login
@@ -97,12 +97,12 @@ fi
 #alias python='/usr/bin/python3.6'
 
 ## Music Player Daemon Controls and Set Desktop Background to current album art
-if [ -f /tmp/BrakConnections.pid ] && [ -z "$SERVER" ] && [ -z "$HEADLESS" ] && [ -n "$MUSICDIR" ] && [ -n "$MPD_HOST" ]; then
+if [ ! -f /tmp/BrakConnections.pid ] && [ -z "$SERVER" ] && [ -z "$HEADLESS" ] && [ -n "$MUSICDIR" ] && [ -n "$MPD_HOST" ]; then
   if [ ! -f /tmp/mpc-next ]; then
+    touch /tmp/mpc-next;
     while true; do 
-      touch /tmp/mpc-next;
       kdialog --title "Now Playing" --passivepopup "$(mpc current --wait)" 10;
-      ~/.local/bin/setCoverArt;
+      ~/.local/bin/setCoverArt $MPD_HOST;
       sleep 30;
       done &
   fi
@@ -125,6 +125,10 @@ fi
 HISTCONTROL=$HISTCONTROL${HISTCONTROL+,}ignoredups
 # ... or force ignoredups and ignorespace
 HISTCONTROL=ignoreboth
+
+if which fish > /dev/null; then
+  /usr/bin/fish
+fi
 
 # append to the history file, don't overwrite it
 shopt -s histappend
