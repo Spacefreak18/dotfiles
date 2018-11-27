@@ -41,7 +41,7 @@ if [ -f ~/.Xdefaults ] && [ -z "$HEADLESS" ]; then
 fi
 
 ## Run the universal program for connecting network shares and syncing config files
-if [ ! -f /tmp/BrakConnections.pid ]; then
+if [ ! -f /tmp/BrakConnections.pid ] && [ -f ~/.local/bin/BrakConnections ]; then
   ~/.local/bin/BrakConnections && ~/.local/bin/setCoverArt $MPD_HOST
 fi
 
@@ -127,6 +127,8 @@ HISTCONTROL=$HISTCONTROL${HISTCONTROL+,}ignoredups
 HISTCONTROL=ignoreboth
 
 if which fish > /dev/null; then
+  rm -f ~/.config/fish/alias.fish
+  echo "$(alias)" > ~/.config/fish/alias.fish
   /usr/bin/fish
 fi
 
