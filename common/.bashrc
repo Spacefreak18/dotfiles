@@ -66,7 +66,7 @@ PS1="\[\e[0;31m\]\u\[\e[m\] \[\e[1;34m\]\w\[\e[m\] \t \[\e[0;31m\]\$ \[\e[m\]\[$
 
 ## Custom Aliases
 alias gpg='gpg2'
-alias weather='curl http://wttr.in/${WLOCATION}'
+alias weather='curl http://wttr.in'
 alias moon='curl http://wttr.in/Moon'
 alias mednafen='pasuspender; mednafen -sound.device sexyal-literal-default -video.fs 1 -nes.stretch aspect -md.stretch aspect -snes.stretch aspect'
 alias mc='mc -S dark'
