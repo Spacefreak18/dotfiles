@@ -45,6 +45,7 @@ set nowrap
 set nocompatible
 set wildmenu
 set splitright
+set nosol
 
 filetype plugin indent on
 
