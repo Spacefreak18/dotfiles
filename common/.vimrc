@@ -22,7 +22,9 @@ silent! let g:syntastic_check_on_wq = 1
 " set path for find for pwd at vim start
 set path=**
 set clipboard=unnamedplus
-
+" name for project specific vimrc
+silent! source .nvimrc
+silent! source .vimrc
 
 " check again for spacevim
 if empty(glob("~/.SpaceVim/config/main.vim"))
