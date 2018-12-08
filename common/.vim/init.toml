@@ -45,3 +45,7 @@ default_height = 30
 [[custom_plugins]]
 name = 'vim-syntastic/syntastic'
 merged = 0
+
+[[custom_plugins]]
+name = 'vim-scripts/dbext.vim'
+merged = 0
