@@ -74,7 +74,7 @@ alias ncmpc='ncmpc -c'
 alias ncmpcpp='ncmpcpp -h $MPD_HOST'
 alias img='fim -d /dev/fb0 -o fb --no-history-save -a'
 alias fim='fim --no-history-save -a'
-alias rg='snap run rg'
+alias rg='snap run rg -L'
 
 export CHEATCOLORS=true
 # enable color support of ls and also add handy aliases
