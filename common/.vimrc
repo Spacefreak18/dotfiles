@@ -22,11 +22,9 @@ silent! let g:syntastic_check_on_wq = 1
 " set path for find for pwd at vim start
 set path=**
 set clipboard=unnamedplus
-" name for project specific vimrc
-silent! source .nvimrc
 
 " check again for spacevim
-if empty(glob("~/.SpaceVim/config/main.vim"))
+"if empty(glob("~/.SpaceVim/config/main.vim"))
 "
 " Normal Settings not used on SpaceVim
 set runtimepath+=/usr/share/vim/addons
@@ -35,6 +33,8 @@ let &packpath=&runtimepath
 
 execute pathogen#infect()
 call pathogen#helptags()
+
+silent! source ~/.vim/dein.vimrc
 
 syntax on
 silent! colorscheme pablo
@@ -73,4 +73,7 @@ if has('nvim')
 endif
 
 " ends check for spacevim
-endif
+"endif
+
+" name for project specific vimrc
+silent! source .nvimrc
