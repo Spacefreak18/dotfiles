@@ -90,7 +90,8 @@ fi
 if which nvim > /dev/null; then
   #curl -sLf https://spacevim.org/install.sh | bash
   test -d ~/.SpaceVim && export SPACEVIMDIR=~/.vim
-  alias vim='nvim -u ~/.vimrc'
+  #alias vim='nvim -u ~/.vimrc'
+  alias nnvim='nvim -u ~/.vimrc'
   alias spacevim='nvim -u ~/.vimrc'
 fi
 
