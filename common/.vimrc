@@ -62,6 +62,8 @@ set tabstop=2
 set shiftwidth=2
 set softtabstop=2
 set expandtab
+set autoindent
+set copyindent
 
 " https://github.com/vim-airline/vim-airline.git
 " apt-get install vim-airline
