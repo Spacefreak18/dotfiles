@@ -66,6 +66,12 @@ set smarttab
 set autoindent
 set copyindent
 
+" Searching
+set showmatch
+set ignorecase
+set hlsearch
+set incsearch
+
 " https://github.com/vim-airline/vim-airline.git
 " apt-get install vim-airline
 silent! let g:airline#extensions#tabline#enabled = 1
