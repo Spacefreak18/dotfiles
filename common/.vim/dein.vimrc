@@ -15,14 +15,15 @@ if dein#load_state('~/.cache/dein')
     call dein#add('roxma/vim-hug-neovim-rpc')
   endif
 
+  " Custom Plugins
+  ""call dein#add('wsdjeg/FlyGrep.vim')
+  call dein#add('vim-scripts/dbext.vim')
+  call dein#add('neomake/neomake')
+  call dein#add('yegappan/grep')
+
   call dein#end()
   call dein#save_state()
 endif
 
 filetype plugin indent on
 syntax enable
-
-"call dein#add('wsdjeg/FlyGrep.vim')
-call dein#add('vim-scripts/dbext.vim')
-call dein#add('neomake/neomake')
-call dein#add('yegappan/grep')
