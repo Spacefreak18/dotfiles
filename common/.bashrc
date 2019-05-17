@@ -127,6 +127,13 @@ HISTCONTROL=$HISTCONTROL${HISTCONTROL+,}ignoredups
 # ... or force ignoredups and ignorespace
 HISTCONTROL=ignoreboth
 
+## Disable Caps Lock Key
+setxkbmap -layout us -option ctrl:nocaps
+xmodmap -e 'clear Lock'
+xmodmap -e 'keycode 0x7e = Control_R'
+xmodmap -e 'add Control = Control_R'
+
+
 if which fish > /dev/null; then
   rm -f ~/.config/fish/alias.fish
   echo "$(alias)" > ~/.config/fish/alias.fish
