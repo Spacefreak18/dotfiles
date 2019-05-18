@@ -74,6 +74,10 @@ set ignorecase
 set hlsearch
 set incsearch
 
+set backupdir=~/.vtemp/backup//
+set directory=~/.vtemp/swap//
+set undodir=~/.vtemp/undo//
+
 " https://github.com/vim-airline/vim-airline.git
 " apt-get install vim-airline
 silent! let g:airline#extensions#tabline#enabled = 1
