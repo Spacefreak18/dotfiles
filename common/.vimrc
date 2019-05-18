@@ -66,6 +66,8 @@ set smarttab
 set autoindent
 set copyindent
 
+silent! let $XMLLINT_INDENT=repeat(" ", &tabstop)
+
 " Searching
 set showmatch
 set ignorecase
