@@ -86,6 +86,13 @@ if [ -x /usr/bin/dircolors ]; then
   alias pacman='pacman-color'
 fi
 
+## make folders for vim backups
+mkdir -p  ~/.vtemp/backup
+mkdir -p ~/.vtemp/swap
+mkdir -p ~/.vtemp/undo/
+
+
+
 # use neovim if it is installed and spacevim
 if which nvim > /dev/null; then
   #curl -sLf https://spacevim.org/install.sh | bash
