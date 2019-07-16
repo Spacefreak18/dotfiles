@@ -41,8 +41,8 @@ if [ -f ~/.Xdefaults ] && [ -z "$HEADLESS" ]; then
 fi
 
 ## Run the universal program for connecting network shares and syncing config files
-if [ ! -f /tmp/BrakConnections.pid ] && [ -f ~/.local/bin/BrakConnections ]; then
-  ~/.local/bin/BrakConnections && ~/.local/bin/setCoverArt $MPD_HOST
+if [ -f ~/.local/bin/BrakConnections ]; then
+  ~/.local/bin/BrakConnections
 fi
 
 ### Startx on Login
@@ -105,7 +105,8 @@ fi
 #alias python='/usr/bin/python3.6'
 
 ## Music Player Daemon Controls and Set Desktop Background to current album art
-if [ -f /tmp/BrakConnections.pid ] && [ -z "$SERVER" ] && [ -z "$HEADLESS" ] && [ -n "$MUSICDIR" ] && [ -n "$MPD_HOST" ]; then
+if [ -n "$HOMENETWORK" ] && [ -z "$SERVER" ] && [ -z "$HEADLESS" ] && [ -n "$MUSICDIR" ] && [ -n "$MPD_HOST" ]; then
+  ~/.local/bin/setCoverArt $MPD_HOST
   if [ ! -f /tmp/mpc-next ]; then
     touch /tmp/mpc-next;
     while true; do 
