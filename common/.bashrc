@@ -145,7 +145,7 @@ xmodmap -e 'add Control = Control_R'
 if which fish > /dev/null; then
   rm -f ~/.config/fish/alias.fish
   echo "$(alias)" > ~/.config/fish/alias.fish
-  /usr/bin/fish
+  #/usr/bin/fish
 fi
 
 # append to the history file, don't overwrite it
