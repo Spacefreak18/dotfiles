@@ -21,6 +21,8 @@ if dein#load_state('~/.cache/dein')
   call dein#add('neomake/neomake')
   call dein#add('yegappan/grep')
   call dein#add('juneedahamed/vc.vim')
+  call dein#add('AndrewRadev/inline_edit.vim')
+  call dein#add('AndrewRadev/linediff.vim')
 
   call dein#end()
   call dein#save_state()
