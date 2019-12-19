@@ -85,6 +85,7 @@ if [ -x /usr/bin/dircolors ]; then
   alias grep='grep --color=auto'
   alias pacman='pacman-color'
 fi
+export CHEAT_PATH="$HOME/.cheat:$HOME/git/cheatsheets"
 
 ## make folders for vim backups
 mkdir -p  ~/.vtemp/backup
