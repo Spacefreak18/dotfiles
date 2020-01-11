@@ -42,7 +42,7 @@ fi
 
 ## Run the universal program for connecting network shares and syncing config files
 if [ -f ~/.local/bin/BrakConnections ]; then
-  ~/.local/bin/BrakConnections
+  source ~/.local/bin/BrakConnections
 fi
 
 ### Startx on Login
