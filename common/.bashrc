@@ -120,7 +120,7 @@ if [ -n "$HOMENETWORK" ] && [ -z "$SERVER" ] && [ -z "$HEADLESS" ] && [ -n "$MUS
 fi
 
 ### Paths
-export PATH=~/.local/bin:$PATH
+export PATH=$PATH:~/.local/bin:~/.cargo/bin
 #export PATH=/opt/android-sdk-linux/tools:$PATH
 #export PATH=/opt/android-sdk-linux/platform-tools:$PATH
 
