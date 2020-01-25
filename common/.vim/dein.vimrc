@@ -24,6 +24,7 @@ if dein#load_state('~/.cache/dein')
   call dein#add('AndrewRadev/inline_edit.vim')
   call dein#add('AndrewRadev/linediff.vim')
   call dein#add('Chiel92/vim-autoformat')
+  call dein#add('godlygeek/tabular')
 
   call dein#end()
   call dein#save_state()
