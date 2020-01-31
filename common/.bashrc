@@ -5,7 +5,7 @@
 ### Paul's User .bashrc file
 ### /home/paul/.bashrc
 
-export TERM=tmux-256color
+export TERM=linux
 set -o vi
 clear
 TMOUT=0
