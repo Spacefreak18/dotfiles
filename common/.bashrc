@@ -5,7 +5,7 @@
 ### Paul's User .bashrc file
 ### /home/paul/.bashrc
 
-export TERM=linux
+export TERM=xterm
 set -o vi
 clear
 TMOUT=0
