@@ -5,7 +5,7 @@
 ### Paul's User .bashrc file
 ### /home/paul/.bashrc
 
-export TERM=xterm
+export TERM=xterm-256color
 set -o vi
 clear
 TMOUT=0
