@@ -76,13 +76,20 @@ alias img='fim -d /dev/fb0 -o fb --no-history-save -a'
 alias fim='fim --no-history-save -a'
 alias rg='snap run rg -L'
 alias f='fish'
+alias g='git'
+alias gs='git status'
+alias gc='git commit'
+alias gd='git diff'
+alias t='tmux'
 
+export EDITOR=vim
 export CHEATCOLORS=true
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
   export CHEATCOLORS=true
   test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
   alias ls='ls --color=auto'
+  which exa > /dev/null && alias ls='exa'
   alias grep='grep --color=auto'
   alias pacman='pacman-color'
 fi
