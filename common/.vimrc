@@ -66,6 +66,9 @@ set smarttab
 set autoindent
 set copyindent
 
+cnoreabbrev W w
+cnoreabbrev Find find
+
 silent! let $XMLLINT_INDENT=repeat(" ", &tabstop)
 
 " Searching
