@@ -1,7 +1,0 @@
-fastboot devices
-
-fastboot flash recovery recovery.img
-
-fastboot boot recovery.img
-
-fastboot oem unlock

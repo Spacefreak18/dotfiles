@@ -1,9 +1,0 @@
-adb devices
-
-adb reboot bootloader
-
-adb reboot recovery
-
-adb push foo.img /sdcard
-
-adb install package.apk
