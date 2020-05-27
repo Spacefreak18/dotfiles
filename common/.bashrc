@@ -62,7 +62,7 @@ fi
 
 ###Colorizied Command Prompt
 ## Red Prompt, Blue Directory, Green text
-PS1="\[\e[0;31m\]\u\[\e[m\] \[\e[1;34m\]\w\[\e[m\] \t \[\e[0;31m\]\$ \[\e[m\]\[$PROMPTGREEN\]"
+env | grep BASH && PS1="\[\e[0;31m\]\u\[\e[m\] \[\e[1;34m\]\w\[\e[m\] \t \[\e[0;31m\]\$ \[\e[m\]\[$PROMPTGREEN\]"
 
 ## Custom Aliases
 alias gpg='gpg2'
@@ -134,9 +134,7 @@ export PATH=$PATH:~/.local/bin:~/.cargo/bin
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
 # sources /etc/bash.bashrc).
-if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
-    . /etc/bash_completion
-fi
+env | grep BASH && test -f /etc/bash_completion && . /etc/bash_completion
 
 # don't put duplicate lines in the history. See bash(1) for more options
 # don't overwrite GNU Midnight Commander's setting of `ignorespace'.
@@ -158,4 +156,4 @@ if which fish > /dev/null; then
 fi
 
 # append to the history file, don't overwrite it
-shopt -s histappend
+env | grep BASH && shopt -s histappend
