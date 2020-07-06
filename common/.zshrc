@@ -21,3 +21,8 @@ setopt    incappendhistory  #Immediately append to the history file, not just wh
 
 # https://github.com/zsh-users/zsh-autosuggestions/issues/515
 autoload compinit && compinit
+
+# https://github.com/denysdovhan/spaceship-prompt
+fpath=( "$HOME/.zfunctions" $fpath )
+autoload -U promptinit; promptinit
+prompt spaceship
