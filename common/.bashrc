@@ -5,7 +5,7 @@
 ### Paul's User .bashrc file
 ### /home/paul/.bashrc
 
-export TERM=xterm-256color
+#export TERM=xterm-256color
 set -o vi
 clear
 TMOUT=0
@@ -89,7 +89,7 @@ if [ -x /usr/bin/dircolors ]; then
   export CHEATCOLORS=true
   test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
   alias ls='ls --color=auto'
-  which exa > /dev/null && alias ls='exa'
+  which exa &> /dev/null && alias ls='exa'
   alias grep='grep --color=auto'
   alias pacman='pacman-color'
 fi
@@ -103,7 +103,7 @@ mkdir -p ~/.vtemp/undo/
 
 
 # use neovim if it is installed and spacevim
-if which nvim > /dev/null; then
+if which nvim &> /dev/null; then
   #curl -sLf https://spacevim.org/install.sh | bash
   test -d ~/.SpaceVim && export SPACEVIMDIR=~/.vim
   #alias vim='nvim -u ~/.vimrc'
@@ -114,20 +114,22 @@ fi
 #alias python='/usr/bin/python3.6'
 
 ## Music Player Daemon Controls and Set Desktop Background to current album art
-if [ -n "$HOMENETWORK" ] && [ -z "$SERVER" ] && [ -z "$HEADLESS" ] && [ -n "$MUSICDIR" ] && [ -n "$MPD_HOST" ]; then
-  ~/.local/bin/setCoverArt $MPD_HOST
+#if [ -n "$HOMENETWORK" ] && [ -z "$SERVER" ] && [ -z "$HEADLESS" ] && [ -n "$MUSICDIR" ] && [ -n "$MPD_HOST" ]; then
+  #~/.local/bin/setCoverArt $MPD_HOST
   if [ ! -f /tmp/mpc-next ]; then
     touch /tmp/mpc-next;
     while true; do 
-      kdialog --title "Now Playing" --passivepopup "$(mpc current --wait)" 10;
-      ~/.local/bin/setCoverArt $MPD_HOST;
-      sleep 30;
+      #kdialog --title "Now Playing" --passivepopup "$(mpc current --wait)" 10;
+      echo "$(mpc -h $MPD_HOST current --wait)" >> /tmp/notifications
+      #~/.local/bin/setCoverArt $MPD_HOST;
+      sleep 15;
       done &
   fi
-fi
+#fi
 
 ### Paths
-export PATH=$PATH:~/.local/bin:~/.cargo/bin
+test -d ~/.local/bin && export PATH=$PATH:~/.local/bin
+test -d ~/.cargo && export PATH=$PATH:~/.cargo/bin
 #export PATH=/opt/android-sdk-linux/tools:$PATH
 #export PATH=/opt/android-sdk-linux/platform-tools:$PATH
 
@@ -143,13 +145,15 @@ HISTCONTROL=$HISTCONTROL${HISTCONTROL+,}ignoredups
 HISTCONTROL=ignoreboth
 
 ## Disable Caps Lock Key
-setxkbmap -layout us -option ctrl:nocaps
-xmodmap -e 'clear Lock'
-xmodmap -e 'keycode 0x7e = Control_R'
-xmodmap -e 'add Control = Control_R'
+if which xmodmap &> /dev/null && which setxkbmap &> /dev/null; then
+  setxkbmap -layout us -option ctrl:nocaps
+  xmodmap -e 'clear Lock'
+  xmodmap -e 'keycode 0x7e = Control_R'
+  xmodmap -e 'add Control = Control_R'
+fi
 
 
-if which fish > /dev/null; then
+if which fish &> /dev/null; then
   rm -f ~/.config/fish/alias.fish
   echo "$(alias)" > ~/.config/fish/alias.fish
   #/usr/bin/fish

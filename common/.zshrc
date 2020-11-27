@@ -1,8 +1,8 @@
 source ~/.bashrc
 
 # installed from debian packages
-source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+test -f /usr/share/zsh-autosuggestions/zsh-autosuggestions.sh && source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+test -f /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh && source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 export ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 
