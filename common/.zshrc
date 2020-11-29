@@ -1,8 +1,13 @@
 source ~/.bashrc
 
 # installed from debian packages
+# syntax highlighting and autocompletion are different things
 test -f /usr/share/zsh-autosuggestions/zsh-autosuggestions.sh && source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 test -f /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh && source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+# manual install
+test -f ~/git/zsh-autosuggestions/zsh-autosuggestions.zsh && source ~/git/zsh-autosuggestions/zsh-autosuggestions.zsh
+test -f ~/git/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh && source ~/git/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 export ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 
