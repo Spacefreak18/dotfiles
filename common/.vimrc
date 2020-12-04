@@ -86,9 +86,10 @@ set undodir=~/.vtemp/undo//
 silent! let g:airline#extensions#tabline#enabled = 1
 
 " https://github.com/Shougo/deoplete.nvim
-if has('nvim')
-  let g:deoplete#enable_at_startup = 1
+if !has('nvim')
+  py3 import pynvim
 endif
+let g:deoplete#enable_at_startup = 1
 
 " ends check for spacevim
 "endif
