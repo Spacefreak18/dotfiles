@@ -114,7 +114,7 @@ fi
 #alias python='/usr/bin/python3.6'
 
 ## Music Player Daemon Controls and Set Desktop Background to current album art
-#if [ -n "$HOMENETWORK" ] && [ -z "$SERVER" ] && [ -z "$HEADLESS" ] && [ -n "$MUSICDIR" ] && [ -n "$MPD_HOST" ]; then
+if [ -n "$HOMENETWORK" ] && [ -z "$SERVER" ] && [ -z "$HEADLESS" ] && [ -n "$MUSICDIR" ] && [ -n "$MPD_HOST" ]; then
   #~/.local/bin/setCoverArt $MPD_HOST
   if [ ! -f /tmp/mpc-next ]; then
     touch /tmp/mpc-next;
@@ -125,7 +125,7 @@ fi
       sleep 15;
       done &
   fi
-#fi
+fi
 
 ### Paths
 test -d ~/.local/bin && export PATH=$PATH:~/.local/bin
@@ -153,11 +153,32 @@ if which xmodmap &> /dev/null && which setxkbmap &> /dev/null; then
 fi
 
 
+function file_replace() {
+  for file in $(find . -type f -name "$1*"); do
+    mv $file $(echo "$file" | sed "s/$1/$2/");
+  done
+}
+
+
+function dir_replace() {
+  for file in $(find . -type d -name "$1*"); do
+    mv $file $(echo "$file" | sed "s/$1/$2/");
+  done
+}
+
+export NNN_TMPFILE="$HOME/.config/nnn/.lastd"
+n()
+{
+  nnn "$@"
+  if [ -f "$NNN_TMPFILE" ]; then
+    . "$NNN_TMPFILE"
+  fi
+}
+
 if which fish &> /dev/null; then
   rm -f ~/.config/fish/alias.fish
   echo "$(alias)" > ~/.config/fish/alias.fish
   #/usr/bin/fish
 fi
-
 # append to the history file, don't overwrite it
 env | grep BASH && shopt -s histappend
