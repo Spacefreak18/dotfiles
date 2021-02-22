@@ -37,7 +37,7 @@ call pathogen#helptags()
 silent! source ~/.vim/dein.vimrc
 
 syntax on
-silent! colorscheme pablo
+silent! colorscheme darkblue
 silent! colorscheme vividchalk
 
 set hidden
