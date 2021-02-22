@@ -111,6 +111,8 @@ if which nvim &> /dev/null; then
   alias spacevim='nvim -u ~/.vimrc'
 fi
 
+export MANPAGER="env MAN_PN=1 vim -M +MANPAGER -"
+
 #alias python='/usr/bin/python3.6'
 
 ## Music Player Daemon Controls and Set Desktop Background to current album art
@@ -146,10 +148,10 @@ HISTCONTROL=ignoreboth
 
 ## Disable Caps Lock Key
 if which xmodmap &> /dev/null && which setxkbmap &> /dev/null; then
-  setxkbmap -layout us -option ctrl:nocaps
-  xmodmap -e 'clear Lock'
-  xmodmap -e 'keycode 0x7e = Control_R'
-  xmodmap -e 'add Control = Control_R'
+  #setxkbmap -layout us -option ctrl:nocaps
+  #xmodmap -e 'clear Lock'
+  #xmodmap -e 'keycode 0x7e = Control_R'
+  #xmodmap -e 'add Control = Control_R'
 fi
 
 
