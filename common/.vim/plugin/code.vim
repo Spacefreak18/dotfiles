@@ -4,19 +4,20 @@ function! GetExpression()
   let l:startchar = col('.')
   while l:posspace == 0
     let l:space = matchstr(getline('.'), '\%' . l:startchar . 'c.')
-    if l:space == " "
+    if l:space == " " || l:startchar == 0
       let l:posspace = 1
+      let l:startchar = l:startchar + 1
     else
       let l:startchar = l:startchar - 1
     endif
   endwhile
-  
+
   let l:varend = 0
   let l:parenthcount = 0
   let l:arraycount = 0
-  let l:currchar = l:startchar + 1
+  let l:currchar = l:startchar
   let l:outstring = ""
-  while l:varend == 0
+  while l:varend == 0 && l:currchar < 400
     let l:tempchar = matchstr(getline('.'), '\%' . l:currchar . 'c.')
     if l:tempchar == "("
       let l:parenthcount = l:parenthcount + 1
@@ -41,8 +42,14 @@ function! GetExpression()
     let l:currchar = l:currchar + 1
   endwhile
 
-  echo l:outstring
+  return l:outstring
 
 
 endfunction
 command! GetExp call GetExpression()
+
+function! JDBPrint()
+  let l:var = GetExpression()
+  exe "JDBCommand" . " " . "eval" . " " . l:var
+endfunction
+command! JDBP call JDBPrint()
