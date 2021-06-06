@@ -26,3 +26,26 @@ function! DoPrettyXML()
   exe "set ft=" . l:origft
 endfunction
 command! PrettyXML call DoPrettyXML()
+
+function! Paulie()
+  let l:thisline = getline(".")
+  let l:pos = virtcol(".")
+  let l:ind = indent(line("."))
+  let l:tablength = &tabstop
+  " see if current variable is proceeded by a space
+  execute "normal! F\<Space>"
+  let l:newpos = virtcol(".")
+  if (l:newpos == l:pos)
+    execute "normal! F\<Tab>"
+  endif
+  let l:startpos = virtcol(".")
+  execute "normal! f\<Space>"
+  let l:endpos = virtcol(".")
+  if (l:endpos == l:startpos)
+    execute "normal! f;"
+  endif
+  let l:finishpos = virtcol(".")
+  let var = strcharpart(l:thisline, l:startpos-(l:ind/l:tablength), l:finishpos-l:startpos-1)
+  exe "JDBCommand" . " " . "eval" . " " . l:var
+endfunction
+command! Paul call Paulie()

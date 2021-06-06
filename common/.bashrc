@@ -81,8 +81,10 @@ alias gs='git status'
 alias gc='git commit'
 alias gd='git diff'
 alias t='tmux'
+alias cstyler='astyle -z2 --style=break --indent=spaces -k1 -e -xb -j -c'
 
-export EDITOR=vim
+
+
 export CHEATCOLORS=true
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
@@ -96,22 +98,20 @@ fi
 export CHEAT_PATH="$HOME/.cheat:$HOME/git/cheatsheets"
 
 ## make folders for vim backups
-mkdir -p  ~/.vtemp/backup
-mkdir -p ~/.vtemp/swap
-mkdir -p ~/.vtemp/undo/
+mkdir -p  ~/.cache/vtemp/backup
+mkdir -p ~/.cache/vtemp/swap
+mkdir -p ~/.cache/vtemp/undo/
 
 
-
+EDITOR=vim
+alias vim='vim -u ~/.config/nvim/global.vim'
 # use neovim if it is installed and spacevim
 if which nvim &> /dev/null; then
-  #curl -sLf https://spacevim.org/install.sh | bash
-  test -d ~/.SpaceVim && export SPACEVIMDIR=~/.vim
-  #alias vim='nvim -u ~/.vimrc'
-  alias nnvim='nvim -u ~/.vimrc'
-  alias spacevim='nvim -u ~/.vimrc'
+  alias vim=/usr/local/bin/nvim
+  export EDITOR=/usr/local/bin/nvim
 fi
 
-export MANPAGER="env MAN_PN=1 vim -M +MANPAGER -"
+export MANPAGER="env MAN_PN=1 nvim -M +MANPAGER -"
 
 #alias python='/usr/bin/python3.6'
 
