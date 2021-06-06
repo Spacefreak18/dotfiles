@@ -1,1 +1,1 @@
-nodejs x11-misc/xclip dev-util/ctags sys-apps/the_silver_searcher app-vim/airline app-vim/pathogen
+nodejs x11-misc/xclip dev-util/ctags sys-apps/the_silver_searcher app-vim/airline app-vim/pathogen layman repoman app-eselect/eselect-repository app-portage/eix
