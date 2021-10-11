@@ -81,6 +81,8 @@ alias gs='git status'
 alias gc='git commit'
 alias gd='git diff'
 alias t='tmux'
+alias tabView="column -t -s $'\t' | pspg --tsv -s7"
+alias csvView='column -s, -t | pspg --csv -s7'
 alias cstyler='astyle -z2 --style=break --indent=spaces -k1 -e -xb -j -c'
 
 
