@@ -6,6 +6,7 @@
 ### /home/paul/.bashrc
 
 #export TERM=xterm-256color
+setfont ohsnap7x14r
 set -o vi
 clear
 TMOUT=0
@@ -15,8 +16,18 @@ which curl > /dev/null || echo "The curl packages is not installed which is nece
 
 clear
 tput cup 10000 0
-which neofetch > /dev/null && neofetch --disable de wm resolution
+which neofetch > /dev/null && neofetch --disable de wm resolution && df -h
 
+## Custom Environmental Variable Defaults
+export DB=
+export DBHOST=
+export DBPASS=
+export DBUSER=
+export MPDHOST=
+export MUSICDIR=
+export HEADLESS=
+export SERVER=
+export FBFONT=ter-118b
 
 # directory to store other specific bash files not for use on all setups
 if [ -d ~/.bash ]; then
@@ -46,9 +57,8 @@ if [ -f ~/.local/bin/BrakConnections ]; then
 fi
 
 ### Startx on Login
-### For this to work $SERVER and $HEADLESS must be set in .profile before this file is sourced
-if [[ -z "$DISPLAY" ]] && [[ $(tty) = /dev/tty1 ]] && [[ $SERVER ]] && [[ ! $HEADLESS ]]; then
-	startx
+if [[ -n "$DISPLAY" ]] && [[ $TTY = /dev/tty1 ]] && [[ ! $SERVER ]] && [[ ! $HEADLESS ]]; then
+	startx --:7
 fi
 
 
@@ -63,6 +73,7 @@ fi
 ###Colorizied Command Prompt
 ## Red Prompt, Blue Directory, Green text
 env | grep BASH && PS1="\[\e[0;31m\]\u\[\e[m\] \[\e[1;34m\]\w\[\e[m\] \t \[\e[0;31m\]\$ \[\e[m\]\[$PROMPTGREEN\]"
+
 
 ## Custom Aliases
 alias gpg='gpg2'
@@ -107,24 +118,26 @@ mkdir -p ~/.cache/vtemp/undo/
 
 EDITOR=vim
 alias vim='vim -u ~/.config/nvim/global.vim'
+export MANPAGER="env MAN_PN=1 vim -M +MANPAGER -"
 # use neovim if it is installed and spacevim
 if which nvim &> /dev/null; then
   alias vim=/usr/local/bin/nvim
   export EDITOR=/usr/local/bin/nvim
+  export MANPAGER="env MAN_PN=1 nvim -M +MANPAGER -"
 fi
 
-export MANPAGER="env MAN_PN=1 nvim -M +MANPAGER -"
+
 
 #alias python='/usr/bin/python3.6'
 
 ## Music Player Daemon Controls and Set Desktop Background to current album art
-if [ -n "$HOMENETWORK" ] && [ -z "$SERVER" ] && [ -z "$HEADLESS" ] && [ -n "$MUSICDIR" ] && [ -n "$MPD_HOST" ]; then
+if [ -n "$HOMENETWORK" ] && [ -z "$SERVER" ] && [ -z "$HEADLESS" ] && [ -n "$MUSICDIR" ] && [ -n "$MPDHOST" ]; then
   #~/.local/bin/setCoverArt $MPD_HOST
   if [ ! -f /tmp/mpc-next ]; then
     touch /tmp/mpc-next;
     while true; do 
       #kdialog --title "Now Playing" --passivepopup "$(mpc current --wait)" 10;
-      echo "$(mpc -h $MPD_HOST current --wait)" >> /tmp/notifications
+      echo "$(mpc -h $MPDHOST current --wait)" >> /tmp/notifications
       #~/.local/bin/setCoverArt $MPD_HOST;
       sleep 15;
       done &
@@ -149,12 +162,12 @@ HISTCONTROL=$HISTCONTROL${HISTCONTROL+,}ignoredups
 HISTCONTROL=ignoreboth
 
 ## Disable Caps Lock Key
-if which xmodmap &> /dev/null && which setxkbmap &> /dev/null; then
+#if which xmodmap &> /dev/null && which setxkbmap &> /dev/null; then
   #setxkbmap -layout us -option ctrl:nocaps
   #xmodmap -e 'clear Lock'
   #xmodmap -e 'keycode 0x7e = Control_R'
   #xmodmap -e 'add Control = Control_R'
-fi
+#fi
 
 
 function file_replace() {
