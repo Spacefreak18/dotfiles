@@ -92,10 +92,10 @@ alias gs='git status'
 alias gc='git commit'
 alias gd='git diff'
 alias t='tmux'
+alias setcvrbg='feh --bg-fill "$(ls $MUSICDIR/"$(mpc --format=%artist%/%album% | head -n 1)"/*.(jpeg|jpg|png) | sort -R | head -n 1)"'
 alias tabView="column -t -s $'\t' | pspg --tsv -s7"
 alias csvView='column -s, -t | pspg --csv -s7'
 alias cstyler='astyle -z2 --style=break --indent=spaces -k1 -e -xb -j -c'
-
 
 
 export CHEATCOLORS=true
@@ -116,32 +116,23 @@ mkdir -p ~/.cache/vtemp/swap
 mkdir -p ~/.cache/vtemp/undo/
 
 
-EDITOR=vim
 alias vim='vim -u ~/.config/nvim/global.vim'
+EDITOR=vim
 export MANPAGER="env MAN_PN=1 vim -M +MANPAGER -"
 # use neovim if it is installed and spacevim
 if which nvim &> /dev/null; then
-  alias vim=/usr/local/bin/nvim
-  export EDITOR=/usr/local/bin/nvim
+  alias vim=/usr/bin/nvim
+  export EDITOR=/usr/bin/nvim
   export MANPAGER="env MAN_PN=1 nvim -M +MANPAGER -"
 fi
-
 
 
 #alias python='/usr/bin/python3.6'
 
 ## Music Player Daemon Controls and Set Desktop Background to current album art
-if [ -n "$HOMENETWORK" ] && [ -z "$SERVER" ] && [ -z "$HEADLESS" ] && [ -n "$MUSICDIR" ] && [ -n "$MPDHOST" ]; then
-  #~/.local/bin/setCoverArt $MPD_HOST
-  if [ ! -f /tmp/mpc-next ]; then
-    touch /tmp/mpc-next;
-    while true; do 
-      #kdialog --title "Now Playing" --passivepopup "$(mpc current --wait)" 10;
-      echo "$(mpc -h $MPDHOST current --wait)" >> /tmp/notifications
-      #~/.local/bin/setCoverArt $MPD_HOST;
-      sleep 15;
-      done &
-  fi
+
+if [[ ! $SERVER ]] && [[ ! $HEADLESS ]]; then
+    alias coverarttrack='while true; do mpc current --wait && setcvrbg; done;'
 fi
 
 ### Paths
@@ -192,10 +183,10 @@ n()
   fi
 }
 
-if which fish &> /dev/null; then
-  rm -f ~/.config/fish/alias.fish
-  echo "$(alias)" > ~/.config/fish/alias.fish
-  #/usr/bin/fish
-fi
+tldr()
+{
+    test -f ~/.cache/tldr/$1.md && /usr/bin/tldr -r ~/.cache/tldr/$1.md || /usr/bin/tldr $1;
+}
+
 # append to the history file, don't overwrite it
 env | grep BASH && shopt -s histappend
