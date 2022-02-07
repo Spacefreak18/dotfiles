@@ -8,14 +8,14 @@ SHOWTABLESMYSQL()
 GETCOLUMNSMYSQL()
 {
     QUERY="DESCRIBE $1;"
-    CMD="$DBCMD -e \"QUERY\""
+    CMD="$DBCMD -e \"$QUERY\""
     eval $CMD
 }
 
 SELECT1000MYSQL()
 {
     QUERY="SELECT $1.* FROM $1 LIMIT 1000;"
-    CMD="$DBCMD -e \"QUERY\" --column-names"
+    CMD="$DBCMD -e \"$QUERY\" --column-names"
     eval $CMD
 }
 
