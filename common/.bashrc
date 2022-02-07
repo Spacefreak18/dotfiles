@@ -93,10 +93,19 @@ alias gc='git commit'
 alias gd='git diff'
 alias t='tmux'
 alias setcvrbg='feh --bg-fill "$(ls $MUSICDIR/"$(mpc --format=%artist%/%album% | head -n 1)"/*.(jpeg|jpg|png) | sort -R | head -n 1)"'
+alias showcvrbg='img "$(ls $MUSICDIR/"$(mpc --format=%artist%/%album% | head -n 1)"/*.(jpeg|jpg|png) | sort -R | head -n 1)"'
+#alias setcvrbg2='clear; img2sixel -h 255 -w 195 /home/paul/girl2.jpg; img2sixel -h 235 -w 275 "$(ls $MUSICDIR/"$(mpc --format=%artist%/%album% > /dev/null | head -n 1)"/*.(jpeg|jpg|png) | sort -R | head -n 1)"'
+#alias setcvrbg2='clear; img2sixel -h 360 /home/paul/girl2.jpg; img2sixel -h 200 "$(ls $MUSICDIR/"$(mpc --format=%artist%/%album% > /dev/null | head -n 1)"/*.(jpeg|jpg|png) | sort -R | head -n 1)"'
+alias setcvrbg2='clear; img2sixel -h 200 "$(ls $MUSICDIR/"$(mpc --format=%artist%/%album% > /dev/null | head -n 1)"/*.(jpeg|jpg|png) | sort -R | head -n 1)"'
+alias setcvrbg3='clear; img2sixel -h 200 -w 200 "$(ls $MUSICDIR/"$(mpc --format=%artist%/%album% > /dev/null | head -n 1)"/*.(jpeg|jpg|png) | sort -R | head -n 1)"'
+alias cvr='cp "$(ls $MUSICDIR/"$(mpc --format=%artist%/%album% | head -n 1)"/*.(jpeg|jpg|png) | sort -R | head -n 1)" /home/paul/cover.jpg'
+alias yplay='mpv --ytdl-format="bestvideo[height<=?720][fps<=?30][vcodec!=?vp9]+bestaudio/best" --cache=yes --cache-secs=8 --cache-pause-initial=yes --cache-pause-wait=5'
 alias tabView="column -t -s $'\t' | pspg --tsv -s7"
 alias csvView='column -s, -t | pspg --csv -s7'
 alias cstyler='astyle -z2 --style=break --indent=spaces -k1 -e -xb -j -c'
+alias bandwidth="query Query \"SELECT SUM(uploaded), sum(downloaded) FROM entries JOIN servers ON servers.id=entries.server WHERE time>='$(date +"%Y-%m")-01'\""
 
+alias treasuries30yr='squote treasuries; <~/.cache/squote_data.csv | csvView'
 
 export CHEATCOLORS=true
 # enable color support of ls and also add handy aliases
@@ -133,6 +142,8 @@ fi
 
 if [[ ! $SERVER ]] && [[ ! $HEADLESS ]]; then
     alias coverarttrack='while true; do mpc current --wait && setcvrbg; done;'
+    alias coverarttrack2='setcvrbg2; while true; do mpc current --wait && setcvrbg2; done;'
+    alias coverarttrack3='setcvrbg3; while true; do mpc current --wait && setcvrbg3; done;'
 fi
 
 ### Paths
@@ -188,5 +199,9 @@ tldr()
     test -f ~/.cache/tldr/$1.md && /usr/bin/tldr -r ~/.cache/tldr/$1.md || /usr/bin/tldr $1;
 }
 
+stock()
+{
+    squote overview $1; <~/.cache/squote_data.csv;
+}
 # append to the history file, don't overwrite it
 env | grep BASH && shopt -s histappend
