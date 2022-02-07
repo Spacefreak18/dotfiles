@@ -1,0 +1,254 @@
+#!/bin/sh
+
+KEYFILE=~/.config/alpha_vantage.key
+
+test -f $KEYFILE || { echo "No API Key File. Cannot continue. Add ~/.config/alpha_vantage.key with your api key."; exit 222; }
+
+KEY=`cat $KEYFILE`
+TEMP_FILE=~/.cache/squote_data.csv
+
+CURL_COMMAND="curl -s"
+
+rm -f "$TEMP_FILE"
+
+STOCK_QUOTE_DATA()
+{
+    STOCK=$1
+    $CURL_COMMAND "https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&interval=5min&symbol=$STOCK&apikey=$KEY&datatype=csv" -o $TEMP_FILE;
+}
+
+STOCK_QUOTE_EXTENDED_DATA()
+{
+    STOCK=$1
+    $CURL_COMMAND "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=$STOCK&outputsize=full&apikey=$KEY&datatype=csv" -o $TEMP_FILE;
+}
+
+REAL_GDP_DATA()
+{
+    FUNCTION=REAL_GDP
+    $CURL_COMMAND "https://www.alphavantage.co/query?function=$FUNCTION&interval=quarterly&apikey=$KEY&datatype=csv" -o $TEMP_FILE;
+}
+
+REAL_GDPPERCAPITA_DATA()
+{
+    FUNCTION=REAL_GDP_PER_CAPITA
+    $CURL_COMMAND "https://www.alphavantage.co/query?function=$FUNCTION&interval=quarterly&apikey=$KEY&datatype=csv" -o $TEMP_FILE;
+}
+
+TREASURY_YIELDS_DATA()
+{
+    $CURL_COMMAND "https://www.alphavantage.co/query?function=TREASURY_YIELD&interval=daily&maturity=$MATURITY&apikey=$KEY&datatype=csv" -o $TEMP_FILE;
+}
+
+FEDERAL_FUNDS_DATA()
+{
+    FUNCTION=FEDERAL_FUNDS_RATE
+    $CURL_COMMAND "https://www.alphavantage.co/query?function=$FUNCTION&interval=$INTERVAL&apikey=$KEY&datatype=csv" -o $TEMP_FILE;
+}
+
+CPI_DATA()
+{
+    FUNCTION=CPI
+    $CURL_COMMAND "https://www.alphavantage.co/query?function=$FUNCTION&interval=$INTERVAL&apikey=$KEY&datatype=csv" -o $TEMP_FILE;
+}
+
+INFLATION_DATA()
+{
+    FUNCTION=INFLATION
+    $CURL_COMMAND "https://www.alphavantage.co/query?function=$FUNCTION&interval=$INTERVAL&apikey=$KEY&datatype=csv" -o $TEMP_FILE;
+}
+
+INFLATION_EXPECTATION_DATA()
+{
+    FUNCTION=INFLATION_EXPECTATION
+    $CURL_COMMAND "https://www.alphavantage.co/query?function=$FUNCTION&interval=$INTERVAL&apikey=$KEY&datatype=csv" -o $TEMP_FILE;
+}
+
+CONSUMER_SENTIMENT_DATA()
+{
+    FUNCTION=CONSUMER_SENTIMENT
+    $CURL_COMMAND "https://www.alphavantage.co/query?function=$FUNCTION&interval=$INTERVAL&apikey=$KEY&datatype=csv" -o $TEMP_FILE;
+}
+
+RETAIL_SALES_DATA()
+{
+    FUNCTION=RETAIL_SALES
+    $CURL_COMMAND "https://www.alphavantage.co/query?function=$FUNCTION&interval=$INTERVAL&apikey=$KEY&datatype=csv" -o $TEMP_FILE;
+}
+
+DURABLES_DATA()
+{
+    FUNCTION=DURABLES
+    $CURL_COMMAND "https://www.alphavantage.co/query?function=$FUNCTION&interval=$INTERVAL&apikey=$KEY&datatype=csv" -o $TEMP_FILE;
+}
+
+UNEMPLOYMENT_DATA()
+{
+    FUNCTION=UNEMPLOYMENT
+    $CURL_COMMAND "https://www.alphavantage.co/query?function=$FUNCTION&interval=$INTERVAL&apikey=$KEY&datatype=csv" -o $TEMP_FILE;
+}
+
+NONFARM_PAYROLL_DATA()
+{
+    FUNCTION=NONFARM_PAYROLL
+    $CURL_COMMAND "https://www.alphavantage.co/query?function=$FUNCTION&interval=$INTERVAL&apikey=$KEY&datatype=csv" -o $TEMP_FILE;
+}
+
+BALANCE_SHEET_DATA()
+{
+    STOCK=$1
+    FUNCTION=BALANCE_SHEET
+    $CURL_COMMAND "https://www.alphavantage.co/query?function=$FUNCTION&symbol=$STOCK&interval=$INTERVAL&apikey=$KEY&datatype=csv" -o $TEMP_FILE;
+}
+
+INCOME_STATEMENT_DATA()
+{
+    STOCK=$1
+    FUNCTION=INCOME_STATEMENT
+    $CURL_COMMAND "https://www.alphavantage.co/query?function=$FUNCTION&symbol=$STOCK&interval=$INTERVAL&apikey=$KEY&datatype=csv" -o $TEMP_FILE;
+}
+
+CASH_FLOW_DATA()
+{
+    STOCK=$1
+    FUNCTION=CASH_FLOW
+    $CURL_COMMAND "https://www.alphavantage.co/query?function=$FUNCTION&symbol=$STOCK&interval=$INTERVAL&apikey=$KEY&datatype=csv" -o $TEMP_FILE;
+}
+
+OVERVIEW_DATA()
+{
+    STOCK=$1
+    FUNCTION=OVERVIEW
+    $CURL_COMMAND "https://www.alphavantage.co/query?function=$FUNCTION&symbol=$STOCK&interval=$INTERVAL&apikey=$KEY&datatype=csv" -o $TEMP_FILE;
+}
+
+EARNINGS_CALENDAR_DATA()
+{
+    STOCK=$1
+    FUNCTION=OVERVIEW
+    $CURL_COMMAND "https://www.alphavantage.co/query?function=$FUNCTION&symbol=$STOCK&interval=$INTERVAL&apikey=$KEY&datatype=csv" -o $TEMP_FILE;
+}
+
+IPO_CALENDAR_DATA()
+{
+    STOCK=$1
+    FUNCTION=OVERVIEW
+    $CURL_COMMAND "https://www.alphavantage.co/query?function=$FUNCTION&symbol=$STOCK&interval=$INTERVAL&apikey=$KEY&datatype=csv" -o $TEMP_FILE;
+}
+
+USAGE()
+{
+    echo "  squote [options] [command] [symbol]
+    -m--maturity 3month,5year,10year,30year 
+    -i--interval 1min,5min,15min,30min,60min,daily,weekly,monthly,semiannual
+   
+    Supported Commands:
+    treasuries
+    gdp
+    cpi
+    inflation
+    inflationexpectations
+    consumersentiment
+    retail
+    durables
+    unemployment
+    nonfarm
+    fedfunds
+    gdppercapita
+    quote
+    chart
+    assets
+    income
+    cash
+    overview
+    earnings
+    ipo"
+}
+
+LONG_OPTS()
+{
+    case "$1" in
+        maturity)
+            MATURITY="$2"
+            ;;
+        interval)
+            INTERVAL="$2"
+            ;;
+        *)
+            USAGE
+            exit 222
+            ;;
+    esac
+}
+
+INTERVAL=monthly
+MATURITY=30year
+
+while getopts "i:m:-:" o; do
+    case "${o}" in
+        i)
+            INTERVAL=${OPTARG}
+            ;;
+        m)
+            MATURITY=${OPTARG}
+            ;;
+        -)
+            OPT=$(echo "${OPTARG}" | cut -d "=" -f1)
+            ARG=$(echo "${OPTARG}" | cut -d "=" -f2)
+            LONG_OPTS $OPT $ARG
+            ;;
+        *)
+            USAGE
+            exit 222
+            ;;
+    esac
+done
+shift $((OPTIND -1))
+
+#echo $MATURITY
+#echo $INTERVAL
+#echo $1
+#echo $2
+
+test "$1" = "treasuries" && TREASURY_YIELDS_DATA && exit 222;
+
+test "$1" = "gdp" && REAL_GDP_DATA && exit 222;
+
+test "$1" = "cpi" && CPI_DATA && exit 222;
+
+test "$1" = "inflation" && INFLATION_DATA && exit 222;
+
+test "$1" = "inflationexpectations" && INFLATION_EXPECTATION_DATA && exit 222;
+
+test "$1" = "consumersentiment" && CONSUME_SENTIMENT_DATA && exit 222;
+
+test "$1" = "retail" && RETAIL_SALES_DATA && exit 222;
+
+test "$1" = "durables" && DURABLES_DATA && exit 222;
+
+test "$1" = "unemployment" && UNEMPLOYMENT_DATA && exit 222;
+
+test "$1" = "nonfarm" && NONFARM_PAYROLL_DATA && exit 222;
+
+test "$1" = "fedfunds" && FEDERAL_FUNDS_DATA && exit 222;
+
+test "$1" = "gdppercapita" && REAL_GDPPERCAPITA_DATA && exit 222;
+
+test "$1" = "quote" && STOCK_QUOTE_DATA $2 && exit 222;
+
+test "$1" = "chart" && STOCK_QUOTE_EXTENDED_DATA $2 && exit 222;
+
+test "$1" = "assets" && BALANCE_SHEET_DATA $2 && exit 222;
+
+test "$1" = "income" && INCOME_STATEMENT_DATA $2 && exit 222;
+
+test "$1" = "cash" && CASH_FLOW_DATA $2 && exit 222;
+
+test "$1" = "overview" && OVERVIEW_DATA $2 && exit 222;
+
+test "$1" = "earnings" && EARNINGS_CALENDAR_DATA && exit 222;
+
+test "$1" = "ipo" && IPO_CALENDAR_DATA && exit 222;
+
+echo "Unrecognized command";
+exit 222;

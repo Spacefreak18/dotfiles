@@ -1,0 +1,87 @@
+#!/bin/sh
+
+SHOWTABLESMYSQL()
+{
+    $DBCMD -e "SHOW TABLES;"
+}
+
+GETCOLUMNSMYSQL()
+{
+    QUERY="DESCRIBE $1;"
+    CMD="$DBCMD -e \"QUERY\""
+    eval $CMD
+}
+
+SELECT1000MYSQL()
+{
+    QUERY="SELECT $1.* FROM $1 LIMIT 1000;"
+    CMD="$DBCMD -e \"QUERY\" --column-names"
+    eval $CMD
+}
+
+QUERYDBMYSQL()
+{
+    QUERY="$1"
+    CMD="$DBCMD -e \"$QUERY\" --column-names"
+    eval $CMD
+}
+
+SHOWTABLESPSQL()
+{
+    $DBCMD "\dt"
+}
+
+GETCOLUMNSPSQL()
+{
+    QUERY="\d+ $1"
+    CMD="$DBCMD \"$QUERY\""
+    eval $CMD
+}
+
+SELECT1000PSQL()
+{
+    QUERY="SELECT $1.* FROM $1 LIMIT 1000;"
+    CMD="$DBCMD \"$QUERY\""
+    eval $CMD
+}
+
+QUERYDBPSQL()
+{
+    QUERY="$1"
+    CMD="$DBCMD \"$QUERY\""
+    eval $CMD
+}
+
+
+MYSQL()
+{
+
+    DBCMD="mysql -u $DBUSER --password=$DBPASS -h $DBHOST -D $DB"
+    
+    test -z "$1" && SHOWTABLESMYSQL && exit 222;
+
+    test "$1" = "Columns" && GETCOLUMNSMYSQL $2 && exit 222;
+
+    test "$1" = "Select" && SELECT1000MYSQL $2 && exit 222;
+
+    test "$1" = "Query" && QUERYDBMYSQL "$2" && exit 222;
+}
+
+PSQL()
+{
+    DBCMD="psql -U $DBUSER -h $DBHOST -d $DB -c"
+    
+    test -z "$1" && SHOWTABLESPSQL && exit 222;
+    
+    test "$1" = "Columns" && GETCOLUMNSPSQL $2 && exit 222;
+
+    test "$1" = "Select" && SELECT1000PSQL $2 && exit 222;
+
+    test "$1" = "Query" && QUERYDBPSQL "$2" && exit 222;
+}
+
+test "$DBTYPE" = "MYSQL" && MYSQL "$1" "$2"
+
+test "$DBTYPE" = "PSQL" && PSQL "$1" "$2"
+
+echo "Unrecognized DBTYPE environment variable setting. Must be PSQL or MYSQL." && exit 222;

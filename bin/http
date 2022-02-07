@@ -1,0 +1,27 @@
+#!/bin/sh
+
+METHOD=$1
+PAYLOAD=$2
+HTTPCONF=$3
+URL=$4
+
+echo -n "You specified "; echo -n $#; echo " parameters."
+
+# you specified 3 parameters
+test -z $4 && test -f $1 && { METHOD=POST; PAYLOAD=$1; HTTPCONF=$2; URL=$3; }
+test -z $4 && test -f $3 && { METHOD=$1; PAYLOAD=$2; HTTPCONF=$3; URL=$3; }
+
+# you specified 2 parameters
+test -z $3 && { METHOD=POST; PAYLOAD=$1; HTTPCONF=$2; URL=$2; }
+
+test -f $URL && URL=`head -n1 $URL`
+
+echo "Using..."
+echo -n "Method: "; echo $METHOD
+echo -n "Payload file: "; echo $PAYLOAD
+echo -n "http conf file: "; echo $HTTPCONF
+echo -n "URL Endpoint: "; echo $URL
+
+sleep 2
+
+curl --verbose --request $METHOD `tail -n +2 $HTTPCONF | tr -d '\n' | sed "s/;/ -H /g"` -d@$PAYLOAD $URL
