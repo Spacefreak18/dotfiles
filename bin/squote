@@ -125,14 +125,14 @@ OVERVIEW_DATA()
 EARNINGS_CALENDAR_DATA()
 {
     STOCK=$1
-    FUNCTION=OVERVIEW
+    FUNCTION=EARNINGS_CALENDAR
     $CURL_COMMAND "https://www.alphavantage.co/query?function=$FUNCTION&symbol=$STOCK&interval=$INTERVAL&apikey=$KEY&datatype=csv" -o $TEMP_FILE;
 }
 
 IPO_CALENDAR_DATA()
 {
     STOCK=$1
-    FUNCTION=OVERVIEW
+    FUNCTION=IPO_CALENDAR
     $CURL_COMMAND "https://www.alphavantage.co/query?function=$FUNCTION&symbol=$STOCK&interval=$INTERVAL&apikey=$KEY&datatype=csv" -o $TEMP_FILE;
 }
 
