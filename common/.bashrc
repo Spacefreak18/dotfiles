@@ -132,7 +132,6 @@ export MANPAGER="env MAN_PN=1 vim -M +MANPAGER -"
 if which nvim &> /dev/null; then
   alias vim=/usr/bin/nvim
   export EDITOR=/usr/bin/nvim
-  export MANPAGER="env MAN_PN=1 nvim -M +MANPAGER -"
 fi
 
 
