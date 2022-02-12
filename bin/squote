@@ -1,21 +1,31 @@
 #!/bin/sh
 
-KEYFILE=~/.config/alpha_vantage.key
-
-test -f $KEYFILE || { echo "No API Key File. Cannot continue. Add ~/.config/alpha_vantage.key with your api key."; exit 222; }
-
-KEY=`cat $KEYFILE`
 TEMP_FILE=~/.cache/squote_data.csv
+rm -f "$TEMP_FILE"
+
+KEYFILE=~/.config/squote/alpha_vantage.key
+test -f $KEYFILE || { echo "No AlphaVantage API Key File. Cannot continue. Add ~/.config/squote/alpha_vantage.key with your api key."; exit 222; }
+KEY=`cat $KEYFILE`
+
+KEYFILE=~/.config/squote/finnhub.key
+test -f $KEYFILE || { echo "No FinHub API Key File. Cannot continue. Add ~/.config/squote/finnhub.key with your api key."; exit 222; }
+FINNHUBKEY=`cat $KEYFILE`
 
 CURL_COMMAND="curl -s"
 
-rm -f "$TEMP_FILE"
 
 STOCK_QUOTE_DATA()
 {
     STOCK=$1
-    $CURL_COMMAND "https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&interval=5min&symbol=$STOCK&apikey=$KEY&datatype=csv" -o $TEMP_FILE;
+    KEY=FINHUBKEY
+    $CURL_COMMAND "https://finnhub.io/api/v1/quote?symbol=$STOCK&token=$FINNHUBKEY" -o $TEMP_FILE;
 }
+
+#STOCK_QUOTE_DATA()
+#{
+    #STOCK=$1
+    #$CURL_COMMAND "https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&interval=5min&symbol=$STOCK&apikey=$KEY&datatype=csv" -o $TEMP_FILE;
+#}
 
 STOCK_QUOTE_EXTENDED_DATA()
 {

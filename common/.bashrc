@@ -202,5 +202,10 @@ stock()
 {
     squote overview $1; <~/.cache/squote_data.csv;
 }
+quote()
+{
+    squote quote $1; <~/.cache/squote_data.csv;
+}
+
 # append to the history file, don't overwrite it
 env | grep BASH && shopt -s histappend
