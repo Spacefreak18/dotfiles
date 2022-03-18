@@ -24,6 +24,7 @@ Plug 'hrsh7th/nvim-compe'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'airblade/vim-rooter'
+Plug 'tpope/vim-sleuth'
 " Initialize plugin system
 call plug#end()
 
