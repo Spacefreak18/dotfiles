@@ -41,3 +41,5 @@ set incsearch
 set backupdir=~/.cache/vtemp/backup//
 set directory=~/.cache/vtemp/swap//
 set undodir=~/.cache/vtemp/undo//
+
+silent! source .nvimrc

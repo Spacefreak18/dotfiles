@@ -40,7 +40,7 @@ if has('nvim-0.5')
    augroup end
 endif
 
-source ~/.config/nvim/global.vim
+silent! source ~/.config/nvim/global.vim
 
 :lua require('treesitter')
 
