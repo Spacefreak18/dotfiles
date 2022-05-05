@@ -32,14 +32,14 @@ let g:mapleader = "\<Space>"
 let g:maplocalleader = ','
 nnoremap <silent> <leader>      :<c-u>WhichKey '<Space>'<CR>
 nnoremap <silent> <localleader> :<c-u>WhichKey  ','<CR>
-if has('nvim-0.5')
+"if has('nvim-0.5')
 
-  augroup lsp
-   au!
-   "au FileType java lua require('jdtls').start_or_attach({cmd = {'java-lsp.sh'}})
-   au FileType java lua require('javadebug')
-   augroup end
-endif
+  "augroup lsp
+    "au!
+    "au FileType java lua require('jdtls').start_or_attach({cmd = {'java-lsp.sh'}})
+    "au FileType java lua require('javadebug').start_or_attach()
+  "augroup end
+"endif
 
 silent! source ~/.config/nvim/global.vim
 
