@@ -6,7 +6,7 @@
 ### /home/paul/.bashrc
 
 #export TERM=xterm-256color
-setfont ohsnap7x14r
+setfont IBM3161
 set -o vi
 clear
 TMOUT=0
@@ -79,7 +79,7 @@ env | grep BASH && PS1="\[\e[0;31m\]\u\[\e[m\] \[\e[1;34m\]\w\[\e[m\] \t \[\e[0;
 alias weather='curl http://wttr.in'
 alias moon='curl http://wttr.in/Moon'
 alias mednafen='pasuspender; mednafen -sound.device sexyal-literal-default -video.fs 1'
-alias mc='mc -S dark'
+alias mc='mc -S gotar'
 alias ncmpc='ncmpc -c'
 alias ncmpcpp='ncmpcpp -h $MPD_HOST'
 alias img='fim -d /dev/fb0 -o fb --no-history-save -a'
@@ -103,9 +103,9 @@ alias tabView="column -t -s $'\t' | pspg --tsv -s7"
 alias csvView='column -s, -t | pspg --csv -s7'
 alias cstyler='astyle -z2 --style=break --indent=spaces -k1 -e -xb -j -c'
 alias bandwidth="query Query \"SELECT SUM(uploaded), sum(downloaded) FROM entries JOIN servers ON servers.id=entries.server WHERE time>='$(date +"%Y-%m")-01'\""
-
 alias treasuries30yr='squote treasuries; <~/.cache/squote_data.csv | csvView'
 
+export PASSWORD_STORE_GPG_OPTS='--pinentry-mode loopback'
 export CHEATCOLORS=true
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
