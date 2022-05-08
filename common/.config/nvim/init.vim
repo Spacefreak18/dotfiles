@@ -7,7 +7,7 @@ Plug 'nvim-treesitter/nvim-treesitter'
 
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
-Plug 'nvim-telescope/telescope.nvim'
+" Plug 'nvim-telescope/telescope.nvim'
 
 Plug 'liuchengxu/vim-which-key'
 Plug 'AckslD/nvim-whichkey-setup.lua'
@@ -25,6 +25,9 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'airblade/vim-rooter'
 Plug 'tpope/vim-sleuth'
+
+Plug 'flazz/vim-colorschemes'
+
 " Initialize plugin system
 call plug#end()
 
@@ -42,6 +45,7 @@ nnoremap <silent> <localleader> :<c-u>WhichKey  ','<CR>
 "endif
 
 silent! source ~/.config/nvim/global.vim
+silent! colorscheme delek
 
 :lua require('treesitter')
 

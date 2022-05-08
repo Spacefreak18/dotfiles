@@ -30,6 +30,7 @@ set copyindent
 cnoreabbrev W w
 cnoreabbrev Find find
 
+silent! colorscheme delek
 silent! let $XMLLINT_INDENT=repeat(" ", &tabstop)
 
 " Searching
