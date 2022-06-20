@@ -27,6 +27,7 @@ Plug 'airblade/vim-rooter'
 Plug 'tpope/vim-sleuth'
 
 Plug 'flazz/vim-colorschemes'
+Plug 'axelf4/vim-strip-trailing-whitespace'
 
 " Initialize plugin system
 call plug#end()
