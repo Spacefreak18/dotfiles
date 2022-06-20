@@ -47,6 +47,7 @@ nnoremap <silent> <localleader> :<c-u>WhichKey  ','<CR>
 
 silent! source ~/.config/nvim/global.vim
 silent! colorscheme delek
+silent! source .nvimrc
 
 :lua require('treesitter')
 
