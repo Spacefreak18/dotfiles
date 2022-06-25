@@ -1,9 +1,10 @@
 set runtimepath+=/usr/share/vim/vimfiles/
 set runtimepath+=/~/.nvim/plugged/
 " Specify a directory for plugins
-call plug#begin('~/.config/nvim/plugged')
+call plug#begin('~/.cache/nvim/plugged')
 
 Plug 'nvim-treesitter/nvim-treesitter'
+Plug 'neovim/nvim-lspconfig'
 
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
@@ -12,7 +13,7 @@ Plug 'nvim-lua/plenary.nvim'
 Plug 'liuchengxu/vim-which-key'
 Plug 'AckslD/nvim-whichkey-setup.lua'
 
-Plug 'glepnir/lspsaga.nvim'
+" Plug 'glepnir/lspsaga.nvim'
 
 Plug 'mfussenegger/nvim-jdtls'
 
@@ -36,20 +37,14 @@ let g:mapleader = "\<Space>"
 let g:maplocalleader = ','
 nnoremap <silent> <leader>      :<c-u>WhichKey '<Space>'<CR>
 nnoremap <silent> <localleader> :<c-u>WhichKey  ','<CR>
-"if has('nvim-0.5')
 
-  "augroup lsp
-    "au!
-    "au FileType java lua require('jdtls').start_or_attach({cmd = {'java-lsp.sh'}})
-    "au FileType java lua require('javadebug').start_or_attach()
-  "augroup end
-"endif
 
 silent! source ~/.config/nvim/global.vim
 silent! colorscheme delek
 silent! source .nvimrc
 
 :lua require('treesitter')
+:lua vim.lsp.set_log_level('debug')
 
 " vim.o.completeopt = "menuone,noselect"
 let g:compe = {}
