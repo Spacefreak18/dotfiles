@@ -102,6 +102,8 @@ alias yplay='mpv --ytdl-format="bestvideo[height<=?720][fps<=?30][vcodec!=?vp9]+
 alias tabView="column -t -s $'\t' | pspg --tsv -s7"
 alias csvView='column -s, -t | pspg --csv -s7'
 alias cstyler='astyle -z2 --style=break --indent=spaces -k1 -e -xb -j -c'
+alias lxc-start='lxc-unpriv-start'
+alias lxc-attach='lxc-unpriv-attach'
 alias bandwidth="query Query \"SELECT SUM(uploaded), sum(downloaded) FROM entries JOIN servers ON servers.id=entries.server WHERE time>='$(date +"%Y-%m")-01'\""
 alias treasuries30yr='squote treasuries; <~/.cache/squote_data.csv | csvView'
 
