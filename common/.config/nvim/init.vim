@@ -27,6 +27,8 @@ Plug 'junegunn/fzf.vim'
 Plug 'airblade/vim-rooter'
 Plug 'tpope/vim-sleuth'
 
+Plug 'tpope/vim-abolish'
+
 Plug 'flazz/vim-colorschemes'
 Plug 'axelf4/vim-strip-trailing-whitespace'
 
