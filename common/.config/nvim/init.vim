@@ -37,6 +37,9 @@ Plug 'tpope/vim-abolish'
 Plug 'flazz/vim-colorschemes'
 Plug 'axelf4/vim-strip-trailing-whitespace'
 
+Plug 'tpope/vim-dadbod'
+Plug 'kristijanhusak/vim-dadbod-ui'
+
 " Initialize plugin system
 call plug#end()
 
@@ -80,3 +83,4 @@ let g:compe.source.vsnip = v:true
 let g:compe.source.tags = v:true
 let g:compe.source.ultisnips = v:true
 
+let g:db_ui_auto_execute_table_helpers = 1
