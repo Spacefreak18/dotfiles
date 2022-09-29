@@ -54,7 +54,7 @@ silent! source .nvimrc
 :lua require("dapui").setup()
 " :lua vim.lsp.set_log_level('trace')
 
-" vim.o.completeopt = "menuone,noselect"
+set completeopt=menuone,noselect
 let g:compe = {}
 let g:compe.enabled = v:true
 let g:compe.autocomplete = v:true
@@ -76,5 +76,6 @@ let g:compe.source.calc = v:true
 let g:compe.source.nvim_lsp = v:true
 let g:compe.source.nvim_lua = v:true
 let g:compe.source.vsnip = v:true
+let g:compe.source.tags = v:true
 let g:compe.source.ultisnips = v:true
 
