@@ -8,22 +8,26 @@ Plug 'neovim/nvim-lspconfig'
 
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
-" Plug 'nvim-telescope/telescope.nvim'
 
-Plug 'liuchengxu/vim-which-key'
-Plug 'AckslD/nvim-whichkey-setup.lua'
+"Plug 'nvim-telescope/telescope.nvim'
+"Plug 'nvim-telescope/telescope-dap.nvim'
+"Plug 'folke/which-key.nvim'
+"Plug 'liuchengxu/vim-which-key'
+"Plug 'AckslD/nvim-whichkey-setup.lua'
 
-" Plug 'glepnir/lspsaga.nvim'
+"Plug 'glepnir/lspsaga.nvim'
 
 Plug 'mfussenegger/nvim-jdtls'
 
 Plug 'mfussenegger/nvim-dap'
 Plug 'rcarriga/nvim-dap-ui'
+Plug 'theHamsta/nvim-dap-virtual-text'
 
 Plug 'hrsh7th/nvim-compe'
 
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
+
 Plug 'airblade/vim-rooter'
 Plug 'tpope/vim-sleuth'
 
@@ -35,10 +39,10 @@ Plug 'axelf4/vim-strip-trailing-whitespace'
 " Initialize plugin system
 call plug#end()
 
-let g:mapleader = "\<Space>"
-let g:maplocalleader = ','
-nnoremap <silent> <leader>      :<c-u>WhichKey '<Space>'<CR>
-nnoremap <silent> <localleader> :<c-u>WhichKey  ','<CR>
+" let g:mapleader = "\<Space>"
+" let g:maplocalleader = ','
+" nnoremap <silent> <leader>      :<c-u>WhichKey '<Space>'<CR>
+" nnoremap <silent> <localleader> :<c-u>WhichKey  ','<CR>
 
 
 silent! source ~/.config/nvim/global.vim
@@ -46,7 +50,9 @@ silent! colorscheme delek
 silent! source .nvimrc
 
 :lua require('treesitter')
-:lua vim.lsp.set_log_level('debug')
+:lua require("keymaps")
+:lua require("dapui").setup()
+" :lua vim.lsp.set_log_level('trace')
 
 " vim.o.completeopt = "menuone,noselect"
 let g:compe = {}
@@ -71,3 +77,4 @@ let g:compe.source.nvim_lsp = v:true
 let g:compe.source.nvim_lua = v:true
 let g:compe.source.vsnip = v:true
 let g:compe.source.ultisnips = v:true
+

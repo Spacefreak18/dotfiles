@@ -1,3 +1,7 @@
+local bundles = {
+    vim.fn.glob("/home/paul/git/com.microsoft.java.debug.plugin-*.jar")
+}
+
 local config = {
     cmd = {
 
@@ -8,12 +12,12 @@ local config = {
     '-Declipse.application=org.eclipse.jdt.ls.core.id1',
     '-Dosgi.bundles.defaultStartLevel=4',
     '-Declipse.product=org.eclipse.jdt.ls.core.product',
-    -- '-Dlog.protocol=true',
-    -- '-Dlog.level=ALL',
-    -- '-Xms1g',
-    --'--add-modules=ALL-SYSTEM',
-    -- '--add-opens', 'java.base/java.util=ALL-UNNAMED',
-    -- '--add-opens', 'java.base/java.lang=ALL-UNNAMED',
+    '-Dlog.protocol=true',
+    '-Dlog.level=ALL',
+    '-Xms1g',
+    '--add-modules=ALL-SYSTEM',
+    '--add-opens', 'java.base/java.util=ALL-UNNAMED',
+    '--add-opens', 'java.base/java.lang=ALL-UNNAMED',
 
     -- 💀
     -- '-jar', '/home/paul/git/eclipse.jdt.ls/org.eclipse.jdt.ls.product/target/repository/plugins/org.eclipse.equinox.launcher_1.6.400.v20210924-0641.jar',
@@ -28,10 +32,10 @@ local config = {
     '-configuration', '/home/paul/git/jdtls/config_linux',
     -- 💀
     -- See `data directory configuration` section in the README
-    '-data', '/home/paul/.lsp'
+    '-data', '/home/paul/.cache/lsp'
   },
     root_dir = require('jdtls.setup').find_root({'.git', '.svn'}),
-
+    init_options = {bundles = bundles},
   -- Here you can configure eclipse.jdt.ls specific settings
   -- See https://github.com/eclipse/eclipse.jdt.ls/wiki/Running-the-JAVA-LS-server-from-the-command-line#initialize-request
   -- for a list of options
@@ -67,6 +71,31 @@ vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, bufopts)
 vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
 vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
 vim.keymap.set('n', '<space>f', vim.lsp.buf.formatting, bufopts)
+
+
+require('jdtls').setup_dap()
+--config['on_attach'] = function(client, bufnr)
+  -- With `hotcodereplace = 'auto' the debug adapter will try to apply code changes
+  -- you make during a debug session immediately.
+  -- Remove the option if you do not want that.
+  --require('jdtls').setup_dap({ hotcodereplace = 'auto' })
+--end
+
+--local dap = require('dap')
+--dap.configurations.java = {
+  --{
+    --type = 'java';
+    --request = 'attach';
+    --name = "Debug (Attach) - Remote";
+    --hostName = "stud";
+    --projectName = "nw_business";
+    ----projectName = "vaadui";
+    --port = 8000;
+  --},
+--}
+-- dap.configurations.java moved to project specific .nvimrc
+
+-- require('dap.ext.vscode').load_launchjs('~/.local/lib/launch.json')
 
 -- This starts a new client & server,
 -- or attaches to an existing client & server depending on the `root_dir`.
