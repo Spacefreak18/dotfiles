@@ -23,6 +23,7 @@ Plug 'mfussenegger/nvim-dap'
 Plug 'rcarriga/nvim-dap-ui'
 Plug 'theHamsta/nvim-dap-virtual-text'
 
+Plug 'hrsh7th/vim-vsnip'
 Plug 'hrsh7th/nvim-compe'
 
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
