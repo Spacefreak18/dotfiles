@@ -6,6 +6,7 @@
 ### /home/paul/.bashrc
 
 #export TERM=xterm-256color
+setterm --foreground green --store
 setfont IBM3161
 set -o vi
 clear
