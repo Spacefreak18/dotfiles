@@ -100,8 +100,8 @@ alias setcvrbg2='clear; img2sixel -h 200 "$(ls $MUSICDIR/"$(mpc --format=%artist
 alias setcvrbg3='clear; img2sixel -h 200 -w 200 "$(ls $MUSICDIR/"$(mpc --format=%artist%/%album% > /dev/null | head -n 1)"/*.(jpeg|jpg|png) | sort -R | head -n 1)"'
 alias cvr='cp "$(ls $MUSICDIR/"$(mpc --format=%artist%/%album% | head -n 1)"/*.(jpeg|jpg|png) | sort -R | head -n 1)" /home/paul/cover.jpg'
 alias yplay='mpv --ytdl-format="bestvideo[height<=?720][fps<=?30][vcodec!=?vp9]+bestaudio/best" --cache=yes --cache-secs=8 --cache-pause-initial=yes --cache-pause-wait=5'
-alias tabView="column -t -s $'\t' | pspg --tsv -s7"
-alias csvView='column -s, -t | pspg --csv -s7'
+alias tabView="pspg --tsv -s7"
+alias csvView='pspg --csv -s7'
 alias cstyler='astyle -z2 --style=break --indent=spaces --convert-tabs --indent-switches -k1 -e -xb -j -c'
 alias lxc-start='lxc-unpriv-start'
 alias lxc-attach='lxc-unpriv-attach'
