@@ -4,7 +4,6 @@ set clipboard=unnamedplus
 set hidden
 set number
 set nowrap
-set nocompatible
 set wildmenu
 set splitright
 set nosol

@@ -13,6 +13,8 @@ FINNHUBKEY=`cat $KEYFILE`
 
 CURL_COMMAND="curl -s"
 
+#MATURITY=
+#INTERVAL=
 
 STOCK_QUOTE_DATA()
 {
@@ -47,7 +49,8 @@ REAL_GDPPERCAPITA_DATA()
 
 TREASURY_YIELDS_DATA()
 {
-    $CURL_COMMAND "https://www.alphavantage.co/query?function=TREASURY_YIELD&interval=daily&maturity=$MATURITY&apikey=$KEY&datatype=csv" -o $TEMP_FILE;
+    FUNCTION=TREASURY_YIELD
+    $CURL_COMMAND "https://www.alphavantage.co/query?function=$FUNCTION&interval=daily&maturity=$MATURITY&apikey=$KEY&datatype=csv" -o $TEMP_FILE;
 }
 
 FEDERAL_FUNDS_DATA()
@@ -177,6 +180,8 @@ USAGE()
 
 LONG_OPTS()
 {
+    echo $1
+    echo $2
     case "$1" in
         maturity)
             MATURITY="$2"
@@ -191,20 +196,29 @@ LONG_OPTS()
     esac
 }
 
-INTERVAL=monthly
-MATURITY=30year
-
+#INTERVAL=monthly
+#MATURITY=30year
+echo "first"
+o="$1"
 while getopts "i:m:-:" o; do
+    echo $o
+    echo "third"
     case "${o}" in
         i)
             INTERVAL=${OPTARG}
+            shift
             ;;
         m)
+            echo "mature"
             MATURITY=${OPTARG}
+            shift
             ;;
         -)
+            echo "Hello"
             OPT=$(echo "${OPTARG}" | cut -d "=" -f1)
             ARG=$(echo "${OPTARG}" | cut -d "=" -f2)
+            echo $OPT
+            echo $ARG
             LONG_OPTS $OPT $ARG
             ;;
         *)
@@ -212,13 +226,16 @@ while getopts "i:m:-:" o; do
             exit 222
             ;;
     esac
+    shift
+    echo "second"
 done
 shift $((OPTIND -1))
 
-#echo $MATURITY
+echo $MATURITY
 #echo $INTERVAL
-#echo $1
-#echo $2
+echo $1
+echo $2
+echo $3
 
 test "$1" = "treasuries" && TREASURY_YIELDS_DATA && exit 222;
 
