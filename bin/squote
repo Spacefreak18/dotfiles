@@ -9,30 +9,29 @@ KEY=`cat $KEYFILE`
 
 KEYFILE=~/.config/squote/finnhub.key
 test -f $KEYFILE || { echo "No FinHub API Key File. Cannot continue. Add ~/.config/squote/finnhub.key with your api key."; exit 222; }
-FINNHUBKEY=`cat $KEYFILE`
+FINHUBKEY=`cat $KEYFILE`
 
 CURL_COMMAND="curl -s"
 
-#MATURITY=
-#INTERVAL=
+MATURITY=10year
+INTERVAL=5min
 
 STOCK_QUOTE_DATA()
 {
     STOCK=$1
-    KEY=FINHUBKEY
-    $CURL_COMMAND "https://finnhub.io/api/v1/quote?symbol=$STOCK&token=$FINNHUBKEY" -o $TEMP_FILE;
+    $CURL_COMMAND "https://finnhub.io/api/v1/quote?symbol=$STOCK&token=$FINHUBKEY" -o $TEMP_FILE;
 }
 
 #STOCK_QUOTE_DATA()
 #{
-    #STOCK=$1
-    #$CURL_COMMAND "https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&interval=5min&symbol=$STOCK&apikey=$KEY&datatype=csv" -o $TEMP_FILE;
+#    STOCK=$1
+#    $CURL_COMMAND "https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&interval=5min&symbol=$STOCK&apikey=$KEY&datatype=csv" -o $TEMP_FILE;
 #}
-
+#
 STOCK_QUOTE_EXTENDED_DATA()
 {
     STOCK=$1
-    $CURL_COMMAND "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=$STOCK&outputsize=full&apikey=$KEY&datatype=csv" -o $TEMP_FILE;
+    $CURL_COMMAND "https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=$STOCK&interval=$INTERVAL&apikey=$KEY&datatype=csv" -o $TEMP_FILE;
 }
 
 REAL_GDP_DATA()
@@ -180,8 +179,6 @@ USAGE()
 
 LONG_OPTS()
 {
-    echo $1
-    echo $2
     case "$1" in
         maturity)
             MATURITY="$2"
@@ -196,29 +193,18 @@ LONG_OPTS()
     esac
 }
 
-#INTERVAL=monthly
-#MATURITY=30year
-echo "first"
 o="$1"
 while getopts "i:m:-:" o; do
-    echo $o
-    echo "third"
-    case "${o}" in
+    case $o in
         i)
             INTERVAL=${OPTARG}
-            shift
             ;;
         m)
-            echo "mature"
             MATURITY=${OPTARG}
-            shift
             ;;
         -)
-            echo "Hello"
             OPT=$(echo "${OPTARG}" | cut -d "=" -f1)
             ARG=$(echo "${OPTARG}" | cut -d "=" -f2)
-            echo $OPT
-            echo $ARG
             LONG_OPTS $OPT $ARG
             ;;
         *)
@@ -226,16 +212,9 @@ while getopts "i:m:-:" o; do
             exit 222
             ;;
     esac
-    shift
-    echo "second"
+    #shift
 done
-shift $((OPTIND -1))
-
-echo $MATURITY
-#echo $INTERVAL
-echo $1
-echo $2
-echo $3
+shift $((OPTIND-1))
 
 test "$1" = "treasuries" && TREASURY_YIELDS_DATA && exit 222;
 
