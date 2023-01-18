@@ -106,7 +106,10 @@ alias cstyler='astyle -z2 --style=break --indent=spaces --convert-tabs --indent-
 alias lxc-start='lxc-unpriv-start'
 alias lxc-attach='lxc-unpriv-attach'
 alias bandwidth="query Query \"SELECT SUM(uploaded), sum(downloaded) FROM entries JOIN servers ON servers.id=entries.server WHERE time>='$(date +"%Y-%m")-01'\""
-alias treasuries30yr='squote treasuries; <~/.cache/squote_data.csv | csvView'
+alias treasuries30yr='squote -m 30yr treasuries; csvView ~/.cache/squote_data.csv'
+alias treasuries10yr='squote -m 10yr treasuries; csvView ~/.cache/squote_data.csv'
+alias graph='gnuplot ~/.local/lib/squote.gp'
+alias graphui='gnuplot -p ~/.local/lib/squoteui.gp'
 alias clipsync='xclip -o | xclip'
 
 export PASSWORD_STORE_GPG_OPTS='--pinentry-mode loopback'
@@ -208,6 +211,14 @@ stock()
 quote()
 {
     squote quote $1; <~/.cache/squote_data.csv;
+}
+chart()
+{
+    squote chart $1; gnuplot -p ~/.local/lib/squotedatefmt2mscol5.gp;
+}
+chartui()
+{
+    squote chart $1; gnuplot -p ~/.local/lib/squotedatefmt2mscol5ui.gp;
 }
 
 # append to the history file, don't overwrite it
