@@ -40,7 +40,7 @@ Plug 'axelf4/vim-strip-trailing-whitespace'
 Plug 'tpope/vim-dadbod'
 Plug 'kristijanhusak/vim-dadbod-ui'
 
-Plug 'sakhnik/nvim-gdb'
+Plug 'sakhnik/nvim-gdb', { 'do': ':!./install.sh' }
 
 " Initialize plugin system
 call plug#end()
