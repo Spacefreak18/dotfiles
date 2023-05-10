@@ -54,6 +54,8 @@ Plug 'hrsh7th/vim-vsnip'
 
 Plug 'onsails/lspkind.nvim'
 
+Plug 'williamboman/mason.nvim'
+
 " Initialize plugin system
 call plug#end()
 
@@ -67,9 +69,12 @@ silent! source ~/.config/nvim/global.vim
 silent! colorscheme delek
 silent! source .nvimrc
 
+:lua require("mason").setup()
 :lua require('treesitter')
 :lua require("keymaps")
 :lua require("setcmp")
+:lua require("lsp")
+:lua require("clangdset")
 :lua require("dapui").setup()
 " :lua vim.lsp.set_log_level('trace')
 
