@@ -19,6 +19,8 @@ Plug 'nvim-lua/plenary.nvim'
 
 Plug 'mfussenegger/nvim-jdtls'
 
+Plug 'juneedahamed/vc.vim'
+
 Plug 'mfussenegger/nvim-dap'
 Plug 'rcarriga/nvim-dap-ui'
 Plug 'theHamsta/nvim-dap-virtual-text'
@@ -42,6 +44,7 @@ Plug 'kristijanhusak/vim-dadbod-ui'
 
 Plug 'sakhnik/nvim-gdb', { 'do': ':!./install.sh' }
 
+Plug 'mhinz/vim-startify'
 " Initialize plugin system
 call plug#end()
 
