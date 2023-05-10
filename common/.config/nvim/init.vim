@@ -74,7 +74,6 @@ silent! source .nvimrc
 :lua require("keymaps")
 :lua require("setcmp")
 :lua require("lsp")
-:lua require("clangdset")
 :lua require("dapui").setup()
 " :lua vim.lsp.set_log_level('trace')
 
