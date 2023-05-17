@@ -56,6 +56,8 @@ Plug 'onsails/lspkind.nvim'
 
 Plug 'williamboman/mason.nvim'
 
+Plug 'nvim-tree/nvim-web-devicons'
+Plug 'folke/trouble.nvim'
 " Initialize plugin system
 call plug#end()
 
@@ -101,5 +103,12 @@ silent! source .nvimrc
 "let g:compe.source.vsnip = v:true
 "let g:compe.source.tags = v:true
 "let g:compe.source.ultisnips = v:true
+lua << EOF
+  require("trouble").setup {
+    -- your configuration comes here
+    -- or leave it empty to use the default settings
+    -- refer to the configuration section below
+  }
+EOF
 
 let g:db_ui_auto_execute_table_helpers = 1
