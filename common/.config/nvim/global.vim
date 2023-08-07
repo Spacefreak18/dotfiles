@@ -30,6 +30,8 @@ cnoreabbrev W w
 cnoreabbrev Find find
 cnoreabbrev ff FZF
 
+cnoreabbrev tt Trouble document_diagnostics
+
 silent! colorscheme delek
 silent! let $XMLLINT_INDENT=repeat(" ", &tabstop)
 

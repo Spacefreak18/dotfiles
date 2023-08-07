@@ -55,6 +55,7 @@ Plug 'hrsh7th/vim-vsnip'
 Plug 'onsails/lspkind.nvim'
 
 Plug 'williamboman/mason.nvim'
+Plug 'jay-babu/mason-nvim-dap.nvim'
 
 Plug 'nvim-tree/nvim-web-devicons'
 Plug 'folke/trouble.nvim'
@@ -72,12 +73,13 @@ silent! colorscheme delek
 silent! source .nvimrc
 
 :lua require("mason").setup()
+:lua require("mason-nvim-dap").setup()
 :lua require('treesitter')
 :lua require("keymaps")
 :lua require("setcmp")
 :lua require("lsp")
 :lua require("dapui").setup()
-" :lua vim.lsp.set_log_level('trace')
+":lua vim.lsp.set_log_level('trace')
 
 "set completeopt=menuone,noselect
 "let g:compe = {}
