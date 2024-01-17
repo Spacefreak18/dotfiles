@@ -23,7 +23,7 @@ Plug 'juneedahamed/vc.vim'
 
 Plug 'mfussenegger/nvim-dap'
 Plug 'rcarriga/nvim-dap-ui'
-Plug 'theHamsta/nvim-dap-virtual-text'
+"Plug 'theHamsta/nvim-dap-virtual-text'
 
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
@@ -39,9 +39,9 @@ Plug 'axelf4/vim-strip-trailing-whitespace'
 Plug 'tpope/vim-dadbod'
 Plug 'kristijanhusak/vim-dadbod-ui'
 
-Plug 'sakhnik/nvim-gdb', { 'do': ':!./install.sh' }
+"Plug 'sakhnik/nvim-gdb', { 'do': ':!./install.sh' }
 
-Plug 'mhinz/vim-startify'
+"Plug 'mhinz/vim-startify'
 
 Plug 'hrsh7th/nvim-cmp'
 Plug 'hrsh7th/cmp-nvim-lsp'
@@ -55,6 +55,8 @@ Plug 'hrsh7th/vim-vsnip'
 Plug 'onsails/lspkind.nvim'
 
 Plug 'williamboman/mason.nvim'
+Plug 'nvim-lualine/lualine.nvim'
+
 Plug 'jay-babu/mason-nvim-dap.nvim'
 
 Plug 'nvim-tree/nvim-web-devicons'
@@ -74,12 +76,15 @@ silent! source .nvimrc
 
 :lua require("mason").setup()
 :lua require("mason-nvim-dap").setup()
-:lua require('treesitter')
+
+:lua require("lualine").setup()
+:lua require("treesitter")
 :lua require("keymaps")
 :lua require("setcmp")
 :lua require("lsp")
 :lua require("dapui").setup()
 ":lua vim.lsp.set_log_level('trace')
+let g:fzf_preview_window = ['right:hidden', 'ctrl-/']
 
 "set completeopt=menuone,noselect
 "let g:compe = {}

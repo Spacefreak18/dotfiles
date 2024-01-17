@@ -29,8 +29,18 @@ set copyindent
 cnoreabbrev W w
 cnoreabbrev Find find
 cnoreabbrev ff FZF
+cnoreabbrev B Buffers
+cnoreabbrev J Jumps
+cnoreabbrev F Files
 
 cnoreabbrev tt Trouble document_diagnostics
+
+nnoremap <F2> :Files<cr>
+nnoremap <F3> :History<cr>
+nnoremap <F9> :Trouble document_diagnostics<cr>
+nnoremap ; :Buffers<cr>
+nnoremap 1 :Files<cr>
+nnoremap , :bnext<cr>
 
 silent! colorscheme delek
 silent! let $XMLLINT_INDENT=repeat(" ", &tabstop)
