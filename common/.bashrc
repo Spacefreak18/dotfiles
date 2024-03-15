@@ -30,15 +30,6 @@ export HEADLESS=
 export SERVER=
 export FBFONT=ter-118b
 
-# directory to store other specific bash files not for use on all setups
-if [ -d ~/.bash ]; then
-	for f in ~/.bash/*; do source $f; done;
-fi
-
-## things I don't want public
-if [[ -f ~/.bash_dark ]]; then
-	. ~/.bash_dark
-fi
 
 ## my file where I store server specific applications to start
 if [[ -f ~/.bash_start ]] && [[ ! -f /tmp/bash_start.pid ]]; then
@@ -223,3 +214,14 @@ chartui()
 
 # append to the history file, don't overwrite it
 env | grep BASH && shopt -s histappend
+
+
+# directory to store other specific bash files not for use on all setups
+if [ -d ~/.bash ]; then
+	for f in ~/.bash/*; do source $f; done;
+fi
+
+## things I don't want public
+if [[ -f ~/.bash_dark ]]; then
+	. ~/.bash_dark
+fi
