@@ -6,32 +6,34 @@ local bundles = {
 
 local config = {
     cmd = {
-        --
-        "/home/paul/.sdkman/candidates/java/17.0.6-amzn/bin/java", -- Or the absolute path '/path/to/java11_or_newer/bin/java'
+        --"/home/paul/.sdkman/candidates/java/jbr-17.0.10-linux-x64-b1207.12/bin/java",
+        "/home/paul/.sdkman/candidates/java/17.0.10-jbr/bin/java",
+        --"/home/paul/.sdkman/candidates/java/17.0.6-amzn/bin/java",
+        --"/home/paul/.sdkman/candidates/java/21.0.2-amzn/bin/java",
         "-Declipse.application=org.eclipse.jdt.ls.core.id1",
         "-Dosgi.bundles.defaultStartLevel=4",
         "-Declipse.product=org.eclipse.jdt.ls.core.product",
         "-Dlog.protocol=true",
         "-Dlog.level=ALL",
-        "-Xms4g",
+        "-Xms1g",
         "--add-modules=ALL-SYSTEM",
         "--add-opens",
         "java.base/java.util=ALL-UNNAMED",
         "--add-opens",
         "java.base/java.lang=ALL-UNNAMED",
         --
-        "-jar",
-        "/home/paul/.local/share/nvim/mason/packages/jdtls/plugins/org.eclipse.equinox.launcher_1.6.700.v20231214-2017.jar",
+        "-jar", "/home/paul/.local/share/nvim/mason/packages/jdtls/plugins/org.eclipse.equinox.launcher_1.6.800.v20240330-1250.jar",
         "-configuration", "/home/paul/.local/share/nvim/mason/packages/jdtls/config_linux",
-        "-data", "/home/paul/.lsp/java/calc40navymain"
+        "-data", "/home/paul/.lsp/java/calc50main2/"
     },
+    root_dir = require('jdtls.setup').find_root({'.svn'}),
     settings = {
         java = {
           configuration = {
             runtimes = {
               {
-                name = "JavaSE-1.8",
-                path = "/home/paul/.sdkman/candidates/java/jdk1.8.0_181",
+                name = "JavaSE-17",
+                path = "/home/paul/.sdkman/candidates/java/17.0.10-jbr",
               }
             }
           },
@@ -44,9 +46,9 @@ local config = {
         bundles = bundles;
     }
 }
---
--- Mappings.
--- See `:help vim.lsp.*` for documentation on any of the below functions
+-- --
+-- -- Mappings.
+-- -- See `:help vim.lsp.*` for documentation on any of the below functions
 local bufopts = { noremap=true, silent=true, buffer=bufnr }
 vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
 vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
@@ -57,12 +59,13 @@ vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, bufopts)
 vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, bufopts)
 vim.keymap.set('n', '<space>wl', function()
   print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-end, bufopts)
+
 vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, bufopts)
 vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, bufopts)
 vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
 vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
--- vim.keymap.set('n', '<space>f', vim.lsp.buf.formatting, bufopts)
+vim.keymap.set('n', '<space>f', vim.lsp.buf.formatting, bufopts)
+end, bufopts)
 
 
 require('jdtls').setup_dap()
