@@ -28,6 +28,7 @@ vim.keymap.set('n', '<leader>dR', ':lua require"dap".repl.toggle({}, "vsplit")<C
 
 
 vim.keymap.set('n', '<leader>u', ':lua require"dapui".toggle()<CR>')
+--vim.keymap.set('n', '<leader>u', function() require"dapui".toggle() end)
 vim.keymap.set('n', '<leader>n', ":bnext<cr>");
 vim.keymap.set('n', '<leader>p', ":bprev<cr>");
 vim.keymap.set('n', '<leader>b', ":Buffers<cr>");
