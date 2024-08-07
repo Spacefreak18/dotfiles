@@ -17,11 +17,12 @@ Plug 'nvim-lua/plenary.nvim'
 
 "Plug 'glepnir/lspsaga.nvim'
 
-Plug 'mfussenegger/nvim-jdtls'
+Plug 'mfussenegger/nvim-jdtls', { 'commit': 'ad5ab1c' }
 
 Plug 'juneedahamed/vc.vim'
 
-Plug 'mfussenegger/nvim-dap'
+Plug 'nvim-neotest/nvim-nio'
+Plug 'mfussenegger/nvim-dap', { 'commit': '7122fd5' }
 Plug 'rcarriga/nvim-dap-ui'
 "Plug 'theHamsta/nvim-dap-virtual-text'
 
@@ -59,7 +60,7 @@ Plug 'nvim-lualine/lualine.nvim'
 
 Plug 'jay-babu/mason-nvim-dap.nvim'
 
-Plug 'nvim-tree/nvim-web-devicons'
+"Plug 'nvim-tree/nvim-web-devicons'
 Plug 'folke/trouble.nvim'
 " Initialize plugin system
 call plug#end()
