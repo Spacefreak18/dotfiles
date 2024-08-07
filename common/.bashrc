@@ -24,7 +24,7 @@ export DB=
 export DBHOST=
 export DBPASS=
 export DBUSER=
-export MPDHOST=
+export MPD_HOST=
 export MUSICDIR=
 export HEADLESS=
 export SERVER=
@@ -73,7 +73,7 @@ alias moon='curl http://wttr.in/Moon'
 alias mednafen='pasuspender; mednafen -sound.device sexyal-literal-default -video.fs 1'
 alias mc='mc -S gotar'
 alias ncmpc='ncmpc -c'
-alias ncmpcpp='ncmpcpp -h $MPD_HOST'
+alias ncmpcpp='ncmpcpp -h $MPDHOST'
 alias img='fim -d /dev/fb0 -o fb --no-history-save -a'
 alias fim='fim --no-history-save -a'
 alias rg='snap run rg -L'
@@ -83,13 +83,14 @@ alias gs='git status'
 alias gc='git commit'
 alias gd='git diff'
 alias t='tmux'
-alias setcvrbg='feh --bg-fill "$(ls $MUSICDIR/"$(mpc --format=%artist%/%album% | head -n 1)"/*.(jpeg|jpg|png) | sort -R | head -n 1)"'
+alias setcvrbg='feh --bg-fill "$(ls $MUSICDIR/"$(mpc -h $MPDHOST --format=%artist%/%album% | head -n 1)"/*.(jpeg|jpg|png) | sort -R | head -n 1)"'
 alias showcvrbg='img "$(ls $MUSICDIR/"$(mpc --format=%artist%/%album% | head -n 1)"/*.(jpeg|jpg|png) | sort -R | head -n 1)"'
 #alias setcvrbg2='clear; img2sixel -h 255 -w 195 /home/paul/girl2.jpg; img2sixel -h 235 -w 275 "$(ls $MUSICDIR/"$(mpc --format=%artist%/%album% > /dev/null | head -n 1)"/*.(jpeg|jpg|png) | sort -R | head -n 1)"'
 #alias setcvrbg2='clear; img2sixel -h 360 /home/paul/girl2.jpg; img2sixel -h 200 "$(ls $MUSICDIR/"$(mpc --format=%artist%/%album% > /dev/null | head -n 1)"/*.(jpeg|jpg|png) | sort -R | head -n 1)"'
 alias setcvrbg2='clear; img2sixel -h 200 "$(ls $MUSICDIR/"$(mpc --format=%artist%/%album% > /dev/null | head -n 1)"/*.(jpeg|jpg|png) | sort -R | head -n 1)"'
 alias setcvrbg3='clear; img2sixel -h 200 -w 200 "$(ls $MUSICDIR/"$(mpc --format=%artist%/%album% > /dev/null | head -n 1)"/*.(jpeg|jpg|png) | sort -R | head -n 1)"'
 alias cvr='cp "$(ls $MUSICDIR/"$(mpc --format=%artist%/%album% | head -n 1)"/*.(jpeg|jpg|png) | sort -R | head -n 1)" /home/paul/cover.jpg'
+alias cvrs='touch file.jpg; rm --force /home/paul/covers/images/covid-19/*(jpeg|jpg|png|bmp) && cp $MUSICDIR/"$(mpc --format=%artist%/%album% | head -n 1)"/*.(jpeg|jpg|png|bmp) /home/paul/covers/images/covid-19/'
 alias yplay='mpv --ytdl-format="bestvideo[height<=?720][fps<=?30][vcodec!=?vp9]+bestaudio/best" --cache=yes --cache-secs=8 --cache-pause-initial=yes --cache-pause-wait=5'
 alias tabView="pspg --tsv -s7"
 alias csvView='pspg --csv -s7'
@@ -137,7 +138,7 @@ fi
 ## Music Player Daemon Controls and Set Desktop Background to current album art
 
 if [[ ! $SERVER ]] && [[ ! $HEADLESS ]]; then
-    alias coverarttrack='while true; do mpc current --wait && setcvrbg; done;'
+    alias coverarttrack='while true; do mpc -h $MPDHOST current --wait && setcvrbg; done;'
     alias coverarttrack2='setcvrbg2; while true; do mpc current --wait && setcvrbg2; done;'
     alias coverarttrack3='setcvrbg3; while true; do mpc current --wait && setcvrbg3; done;'
 fi
@@ -145,6 +146,7 @@ fi
 ### Paths
 test -d ~/.local/bin && export PATH=$PATH:~/.local/bin
 test -d ~/.cargo && export PATH=$PATH:~/.cargo/bin
+test -d ~/.sdkman/candidates/java/current && export PATH=$PATH~/.sdkman/candidates/java/current/bin
 #export PATH=/opt/android-sdk-linux/tools:$PATH
 #export PATH=/opt/android-sdk-linux/platform-tools:$PATH
 
@@ -215,7 +217,6 @@ chartui()
 # append to the history file, don't overwrite it
 env | grep BASH && shopt -s histappend
 
-
 # directory to store other specific bash files not for use on all setups
 if [ -d ~/.bash ]; then
 	for f in ~/.bash/*; do source $f; done;
@@ -225,3 +226,7 @@ fi
 if [[ -f ~/.bash_dark ]]; then
 	. ~/.bash_dark
 fi
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
