@@ -42,7 +42,7 @@ nnoremap ; :Buffers<cr>
 nnoremap 1 :Files<cr>
 nnoremap , :bnext<cr>
 
-silent! colorscheme delek
+silent! colorscheme vividchalk
 silent! let $XMLLINT_INDENT=repeat(" ", &tabstop)
 
 " Searching

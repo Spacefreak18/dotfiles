@@ -10,7 +10,6 @@ silent! source ~/.config/nvim/plugconfig.vim
 
 
 silent! source ~/.config/nvim/global.vim
-silent! colorscheme delek
 silent! source .nvimrc
 
 
