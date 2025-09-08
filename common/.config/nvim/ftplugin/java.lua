@@ -5,6 +5,7 @@ local jdtls = require("jdtls")
 local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ":p:h:t")
 local workspace_dir = home .. "/jdtls-workspace/" .. project_name
 
+local calcsrc = os.getenv("WORKSPACE")
 local system_os = ""
 
 -- Determine OS
@@ -56,7 +57,9 @@ local config = {
   -- This is the default if not provided, you can remove it. Or adjust as needed.
   -- One dedicated LSP server & client will be started per unique root_dir
   -- root_dir = require("jdtls.setup").find_root({ ".git", "mvnw", "pom.xml", "build.gradle" }),
-  root_dir = "/home/paul/dev/svn/5.0/CALC/",
+
+  root_dir = calcsrc .. "/CALC",
+  --root_dir = "/home/paul/dev/svn/5.0/CALC/",
   --root_dir = require("lspconfig").util.root_pattern(
 	--	".git",
 	--	"mvnw",
@@ -70,7 +73,7 @@ local config = {
   settings = {
     java = {
       -- TODO Replace this with the absolute path to your main java version (JDK 17 or higher)
-      home = "/home/paul/.sdkman/candidates/java/jbr-17.0.12-linux-x64-b1207.37",
+      home = "/home/paul/.sdkman/candidates/java/current",
       eclipse = {
         downloadSources = true,
       },
@@ -79,18 +82,18 @@ local config = {
         -- TODO Update this by adding any runtimes that you need to support your Java projects and removing any that you don't have installed
         -- The runtime name parameters need to match specific Java execution environments.  See https://github.com/tamago324/nlsp-settings.nvim/blob/2a52e793d4f293c0e1d61ee5794e3ff62bfbbb5d/schemas/_generated/jdtls.json#L317-L334
         runtimes = {
-          {
-            name = "JavaSE-11",
-            path = "/usr/lib/jvm/java-11-openjdk-amd64",
-          },
+          --{
+            --name = "JavaSE-11",
+            --path = "/usr/lib/jvm/java-11-openjdk-amd64",
+          --},
           {
             name = "JavaSE-17",
-            path = "/home/paul/.sdkman/candidates/java/jbr-17.0.12-linux-x64-b1207.37",
+            path = "/home/paul/.sdkman/candidates/java/current",
           },
-          {
-            name = "JavaSE-19",
-            path = "/usr/lib/jvm/java-19-openjdk-amd64",
-          },
+          --{
+            --name = "JavaSE-19",
+            --path = "/usr/lib/jvm/java-19-openjdk-amd64",
+          --},
         },
       },
       maven = {
@@ -157,10 +160,30 @@ local config = {
   },
 }
 
+-- vim.lsp.set_log_level(0)
+
 -- Needed for debugging
 config["on_attach"] = function(client, bufnr)
   jdtls.setup_dap({ hotcodereplace = "auto" })
   require("jdtls.dap").setup_dap_main_class_configs()
+  -- #region
+  --  local augroup_id = vim.api.nvim_create_augroup(
+  --  "FormatModificationsDocumentFormattingGroup",
+  --  { clear = false }
+  --  )
+  --  vim.api.nvim_clear_autocmds({ group = augroup_id, buffer = bufnr })
+
+  --  vim.api.nvim_create_autocmd(
+  --    { "BufWritePre" },
+  --    {
+  --      group = augroup_id,
+  --      buffer = bufnr,
+  --      callback = function()
+  --        local lsp_format_modifications = require"lsp-format-modifications"
+  --        lsp_format_modifications.format_modifications(client, bufnr)
+  --      end,
+  --    }
+  --  )
 end
 
 -- This starts a new client & server, or attaches to an existing client & server based on the `root_dir`.
