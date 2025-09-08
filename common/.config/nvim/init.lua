@@ -38,3 +38,4 @@ local function source_if_exists(filepath)
 end
 
 source_if_exists("carrier.nvimrc")
+vim.cmd [[set viewoptions-=curdir]]
