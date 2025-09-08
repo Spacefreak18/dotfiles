@@ -102,29 +102,29 @@ keymap.set('n', '<leader>tr', '<cmd>lua vim.lsp.buf.document_symbol()<CR>')
 keymap.set('i', '<C-Space>', '<cmd>lua vim.lsp.buf.completion()<CR>')
 
 -- Filetype-specific keymaps (these can be done in the ftplugin directory instead if you prefer)
-keymap.set("n", '<leader>go', function()
-  if vim.bo.filetype == 'java' then
-    require('jdtls').organize_imports();
-  end
-end)
-
-keymap.set("n", '<leader>gu', function()
-  if vim.bo.filetype == 'java' then
-    require('jdtls').update_projects_config();
-  end
-end)
-
-keymap.set("n", '<leader>tc', function()
-  if vim.bo.filetype == 'java' then
-    require('jdtls').test_class();
-  end
-end)
-
-keymap.set("n", '<leader>tm', function()
-  if vim.bo.filetype == 'java' then
-    require('jdtls').test_nearest_method();
-  end
-end)
+-- keymap.set("n", '<leader>go', function()
+--   if vim.bo.filetype == 'java' then
+--     require('jdtls').organize_imports();
+--   end
+-- end)
+--
+-- keymap.set("n", '<leader>gu', function()
+--   if vim.bo.filetype == 'java' then
+--     require('jdtls').update_projects_config();
+--   end
+-- end)
+--
+-- keymap.set("n", '<leader>tc', function()
+--   if vim.bo.filetype == 'java' then
+--     require('jdtls').test_class();
+--   end
+-- end)
+--
+-- keymap.set("n", '<leader>tm', function()
+--   if vim.bo.filetype == 'java' then
+--     require('jdtls').test_nearest_method();
+--   end
+-- end)
 
 -- Debugging
 keymap.set("n", "<leader>bb", "<cmd>lua require'dap'.toggle_breakpoint()<cr>")
@@ -146,7 +146,7 @@ keymap.set("n", '<leader>df', '<cmd>Telescope dap frames<cr>')
 keymap.set("n", '<leader>dh', '<cmd>Telescope dap commands<cr>')
 keymap.set("n", '<leader>de', function() require('telescope.builtin').diagnostics({default_text=":E:"}) end)
 
-keymap.set('n', '<leader>du', '<cmd>lua require"dapui".toggle()<cr>')
-keymap.set('n', '<F2>', ":FzfLua files<cr>")
-keymap.set('n', '<F4>', ":FzfLua oldfiles<cr>")
-keymap.set('n', '<F4>', ":FzfLua oldfiles<cr>")
+keymap.set("n", "<leader>du", "<cmd>lua require'dapui'.toggle()<cr>")
+
+keymap.set("n", "<F2>", ":FzfLua files<cr>")
+keymap.set("n", "<F4>", ":FzfLua oldfiles<cr>")
