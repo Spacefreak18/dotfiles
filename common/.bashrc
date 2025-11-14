@@ -11,7 +11,7 @@ setfont IBM3161
 set -o vi
 clear
 TMOUT=0
-
+unset WAYLAND_DISPLAY
 
 which curl > /dev/null || echo "The curl packages is not installed which is necessary for certain features. Install cli_common."
 
@@ -103,6 +103,7 @@ alias treasuries10yr='squote -m 10yr treasuries; csvView ~/.cache/squote_data.cs
 alias graph='gnuplot ~/.local/lib/squote.gp'
 alias graphui='gnuplot -p ~/.local/lib/squoteui.gp'
 alias clipsync='xclip -o | xclip'
+alias nmysql='ncmysql -u $DBUSER -p $DBPASS -h $DBHOST $DBDB'
 
 export PASSWORD_STORE_GPG_OPTS='--pinentry-mode loopback'
 export CHEATCOLORS=true
@@ -219,7 +220,7 @@ env | grep BASH && shopt -s histappend
 
 # directory to store other specific bash files not for use on all setups
 if [ -d ~/.bash ]; then
-	for f in ~/.bash/*; do source $f; done;
+	for f in ~/.bash/*; do test -f $f && source $f; done;
 fi
 
 ## things I don't want public
@@ -230,3 +231,7 @@ fi
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
