@@ -4,4 +4,3 @@ return {
   branch = 'master',
   event = 'VeryLazy',
 }
-
